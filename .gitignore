@@ -1,0 +1,5 @@
+*
+!*.asm
+!*.txt
+!.gitignore
+!README.md
