@@ -25,11 +25,11 @@ ES_LEFT             EQU 0h
 ES_AUTOHSCROLL      EQU 128
 ES_READONLY         EQU 2048
 
-WindowWidth         EQU 640
-WindowHeight        EQU 480
+WindowWidth         EQU 300
+WindowHeight        EQU 200
 
 EditID              EQU 1
-EditID2             EQU 2
+ShowID              EQU 2
 
 %define wc                 EBP - 80             ; WNDCLASSEX structure. 48 bytes
 %define wc.cbSize          EBP - 80
@@ -76,18 +76,21 @@ extern SetFocus
 extern GetStdHandle
 extern WriteConsoleA
 extern IsDialogMessageA
+
 section .data 
     ClassName       db "reverse", 0h
     AppName         db "Reverse String", 0h
     EditClassName   db  "edit", 0h
 
+    
+
 section .bss 
     hInstance       resd 1
     CommandLine     resd 1
     hwndEdit        resd 1
-    hwndEdit2       resd 1
+    hwndShow        resd 1
     buffer          resb 1024
-    lpNumberOfCharsWritten resb 32
+    revstr          resb 1024
 
 
 section .text 
@@ -144,8 +147,8 @@ WinMain:
     push dword [hInstance]
     push NULL
     push NULL
-    push 180
-    push 300
+    push WindowHeight
+    push WindowWidth
     push CW_USEDEFAULT
     push CW_USEDEFAULT
     push WS_OVERLAPPEDWINDOW
@@ -203,14 +206,7 @@ WndProc:
     ; Set up a stack frame
     push ebp
     mov ebp, esp
-    push STD_OUTPUT_HANDLE
-    call GetStdHandle   ; 1 parameters, output to eax
-    push NULL
-    push lpNumberOfCharsWritten
-    push 1
-    push uMsg
-    push eax
-    call WriteConsoleA  ; call winapi, 5 parameters
+
     cmp dword [uMsg], WM_DESTROY
     je WmDestroy 
 
@@ -237,9 +233,9 @@ WmCreate:
     push EditID
     push dword [hWnd]
     push 25
-    push 175
-    push 35
-    push 50
+    push WindowWidth - 75
+    push 40
+    push 25
     mov eax, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_LEFT | ES_AUTOHSCROLL
     push eax
     push NULL
@@ -248,45 +244,41 @@ WmCreate:
     call CreateWindowExA
     mov dword [hwndEdit], eax
 
-    push hwndEdit
+    push dword [hwndEdit]
     call SetFocus
 
     push NULL
     push dword [hInstance]
-    push EditID2
+    push ShowID
     push dword [hWnd]
     push 25
-    push 175
-    push 70
-    push 50
+    push WindowWidth - 75
+    push WindowHeight - 100
+    push 25
     push WS_CHILD | WS_VISIBLE | WS_BORDER | ES_READONLY | ES_AUTOHSCROLL
     push NULL
     push EditClassName
     push WS_EX_CLIENTEDGE
     call CreateWindowExA
-    mov dword [hwndEdit2], eax
+    mov dword [hwndShow], eax
     jmp WmEnd
 
 WmCommand:
     mov eax, dword [wParam]
-    cmp eax, EditID
+    cmp ax, EditID
     jne WmEnd
 
     push 1024
     push buffer
-    push hwndEdit
+    push dword [hwndEdit]
     call GetWindowTextA
 
-    ; push STD_OUTPUT_HANDLE
-    ; call GetStdHandle   ; 1 parameters, output to eax
-    ; push NULL
-    ; push lpNumberOfCharsWritten
-    ; push 1
-    ; push buffer
-    ; push eax
-    ; call WriteConsoleA  ; call winapi, 5 parameters
     push buffer
-    push hwndEdit2
+    push revstr
+    call RevStr
+
+    push revstr
+    push dword [hwndShow]
     call SetWindowTextA
 
     jmp WmEnd
@@ -299,3 +291,43 @@ WmEnd:
     mov esp, ebp
     pop ebp 
     ret 16
+
+RevStr:
+    push ebp
+    mov ebp, esp
+
+    xor eax, eax
+    xor ecx, ecx
+    mov ebx, [ebp + 8]
+    mov edx, [ebp + 12]
+
+    next_char:
+        mov al, [edx]
+        cmp al, 0x0
+        je before_reverse
+        cmp al, 0xA
+        je before_reverse
+        push eax
+        inc edx
+        inc ecx
+        jmp next_char
+    
+    before_reverse:
+        mov dword [ebx], 0
+        cmp ecx, 0
+        je reverse_done
+
+    reverse:
+        pop eax
+        mov [ebx], eax
+        inc ebx
+        loop reverse
+    
+    reverse_done:
+        mov esp, ebp
+	    pop ebp
+        ret
+    
+
+
+
