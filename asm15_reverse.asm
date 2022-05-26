@@ -1,3 +1,6 @@
+; nasm -f win32 asm15_reverse.asm -o asm15_reverse.obj
+; GoLink.exe /console asm15_reverse.obj kernel32.dll user32.dll
+; .\asm15_reverse.exe
 STD_OUTPUT_HANDLE   EQU -11
 COLOR_WINDOW        EQU 5                       ; Constants
 CS_BYTEALIGNWINDOW  EQU 2000h
