@@ -1,3 +1,4 @@
+STD_OUTPUT_HANDLE   EQU -11
 COLOR_WINDOW        EQU 5                       ; Constants
 CS_BYTEALIGNWINDOW  EQU 2000h
 CS_HREDRAW          EQU 2
@@ -11,13 +12,24 @@ LR_SHARED           EQU 8000h
 NULL                EQU 0
 SW_SHOWNORMAL       EQU 1
 SW_SHOWDEFAULT      EQU 10
+WM_CREATE           EQU 1
 WM_DESTROY          EQU 2
+WM_COMMAND          EQU 0111h
 WS_EX_COMPOSITED    EQU 2000000h
 WS_OVERLAPPEDWINDOW EQU 0CF0000h
 WS_EX_CLIENTEDGE    EQU 00000200h
+WS_CHILD            EQU 40000000h
+WS_BORDER           EQU 00800000h
+WS_VISIBLE          EQU 10000000h
+ES_LEFT             EQU 0h
+ES_AUTOHSCROLL      EQU 128
+ES_READONLY         EQU 2048
 
 WindowWidth         EQU 640
 WindowHeight        EQU 480
+
+EditID              EQU 1
+EditID2             EQU 2
 
 %define wc                 EBP - 80             ; WNDCLASSEX structure. 48 bytes
 %define wc.cbSize          EBP - 80
@@ -46,6 +58,8 @@ WindowHeight        EQU 480
 
 extern GetModuleHandleA
 extern GetCommandLineA
+extern GetWindowTextA
+extern SetWindowTextA
 extern ExitProcess
 extern LoadIconA
 extern LoadCursorA
@@ -53,12 +67,15 @@ extern RegisterClassExA
 extern CreateWindowExA
 extern ShowWindow
 extern UpdateWindow
-extern GetMessage
+extern GetMessageA
 extern TranslateMessage
-extern DispatchMessage
+extern DispatchMessageA
 extern DefWindowProcA
 extern PostQuitMessage
-
+extern SetFocus
+extern GetStdHandle
+extern WriteConsoleA
+extern IsDialogMessageA
 section .data 
     ClassName       db "reverse", 0h
     AppName         db "Reverse String", 0h
@@ -67,6 +84,11 @@ section .data
 section .bss 
     hInstance       resd 1
     CommandLine     resd 1
+    hwndEdit        resd 1
+    hwndEdit2       resd 1
+    buffer          resb 1024
+    lpNumberOfCharsWritten resb 32
+
 
 section .text 
     global Start 
@@ -122,8 +144,8 @@ WinMain:
     push dword [hInstance]
     push NULL
     push NULL
-    push WindowHeight
-    push WindowWidth
+    push 180
+    push 300
     push CW_USEDEFAULT
     push CW_USEDEFAULT
     push WS_OVERLAPPEDWINDOW
@@ -146,9 +168,16 @@ MessageLoop:
     push NULL
     push NULL
     push eax
-    call GetMessage
+    call GetMessageA
     cmp eax, 0
     je MessageDone
+
+    lea eax, [msg]
+    push eax
+    push dword [hWnd]
+    call IsDialogMessageA
+    cmp eax, 0
+    jne MessageLoop
 
     lea eax, [msg]
     push eax
@@ -156,7 +185,7 @@ MessageLoop:
 
     lea eax, [msg]
     push eax
-    call DispatchMessage
+    call DispatchMessageA
 
     jmp MessageLoop
 
@@ -166,18 +195,30 @@ MessageDone:
     xor eax, eax
     ret
 
-WndProc:
-    ; Set up a stack frame
-    push ebp
-    mov ebp, esp
-
 %define hWnd    EBP + 8                         ; Location of the 4 passed parameters from
 %define uMsg    EBP + 12                        ; the calling function
 %define wParam  EBP + 16                        ; We can now access these parameters by name
 %define lParam  EBP + 20
-
+WndProc:
+    ; Set up a stack frame
+    push ebp
+    mov ebp, esp
+    push STD_OUTPUT_HANDLE
+    call GetStdHandle   ; 1 parameters, output to eax
+    push NULL
+    push lpNumberOfCharsWritten
+    push 1
+    push uMsg
+    push eax
+    call WriteConsoleA  ; call winapi, 5 parameters
     cmp dword [uMsg], WM_DESTROY
     je WmDestroy 
+
+    cmp dword [uMsg], WM_CREATE
+    je WmCreate 
+
+    cmp dword [uMsg], WM_COMMAND
+    je WmCommand
 
 DefaultMessage:
     push dword [lParam]
@@ -190,10 +231,70 @@ DefaultMessage:
     pop ebp
     ret 16
 
+WmCreate:
+    push NULL
+    push dword [hInstance]
+    push EditID
+    push dword [hWnd]
+    push 25
+    push 175
+    push 35
+    push 50
+    mov eax, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_LEFT | ES_AUTOHSCROLL
+    push eax
+    push NULL
+    push EditClassName
+    push WS_EX_CLIENTEDGE
+    call CreateWindowExA
+    mov dword [hwndEdit], eax
+
+    push hwndEdit
+    call SetFocus
+
+    push NULL
+    push dword [hInstance]
+    push EditID2
+    push dword [hWnd]
+    push 25
+    push 175
+    push 70
+    push 50
+    push WS_CHILD | WS_VISIBLE | WS_BORDER | ES_READONLY | ES_AUTOHSCROLL
+    push NULL
+    push EditClassName
+    push WS_EX_CLIENTEDGE
+    call CreateWindowExA
+    mov dword [hwndEdit2], eax
+    jmp WmEnd
+
+WmCommand:
+    mov eax, dword [wParam]
+    cmp eax, EditID
+    jne WmEnd
+
+    push 1024
+    push buffer
+    push hwndEdit
+    call GetWindowTextA
+
+    ; push STD_OUTPUT_HANDLE
+    ; call GetStdHandle   ; 1 parameters, output to eax
+    ; push NULL
+    ; push lpNumberOfCharsWritten
+    ; push 1
+    ; push buffer
+    ; push eax
+    ; call WriteConsoleA  ; call winapi, 5 parameters
+    push buffer
+    push hwndEdit2
+    call SetWindowTextA
+
+    jmp WmEnd
 WmDestroy:
     push NULL
     call PostQuitMessage
 
+WmEnd:
     xor eax, eax
     mov esp, ebp
     pop ebp 
