@@ -15,6 +15,7 @@ SW_SHOWDEFAULT      EQU 10
 WM_CREATE           EQU 1
 WM_DESTROY          EQU 2
 WM_COMMAND          EQU 0111h
+WM_TIMER            EQU 0113h
 WS_EX_COMPOSITED    EQU 2000000h
 WS_OVERLAPPEDWINDOW EQU 0CF0000h
 WS_EX_CLIENTEDGE    EQU 00000200h
@@ -24,37 +25,40 @@ WS_VISIBLE          EQU 10000000h
 ES_LEFT             EQU 0h
 ES_AUTOHSCROLL      EQU 128
 ES_READONLY         EQU 2048
-WHITE_BRUSH         EQU 0x80000000
+WHITE_BRUSH         EQU 0
+GRAY_BRUSH          EQU 2
 WindowWidth         EQU 300
 WindowHeight        EQU 200
 
 EditID              EQU 1
 ShowID              EQU 2
 
-%define wc                 EBP - 80             ; WNDCLASSEX structure. 48 bytes
-%define wc.cbSize          EBP - 80
-%define wc.style           EBP - 76
-%define wc.lpfnWndProc     EBP - 72
-%define wc.cbClsExtra      EBP - 68
-%define wc.cbWndExtra      EBP - 64
-%define wc.hInstance       EBP - 60
-%define wc.hIcon           EBP - 56
-%define wc.hCursor         EBP - 52
-%define wc.hbrBackground   EBP - 48
-%define wc.lpszMenuName    EBP - 44
-%define wc.lpszClassName   EBP - 40
-%define wc.hIconSm         EBP - 36
 
-%define msg                EBP - 32             ; MSG structure. 28 bytes
-%define msg.hwnd           EBP - 32             ; Breaking out each member is not necessary
-%define msg.message        EBP - 28             ; in this case, but it shows where each
-%define msg.wParam         EBP - 24             ; member is on the stack
-%define msg.lParam         EBP - 20
-%define msg.time           EBP - 16
-%define msg.pt.x           EBP - 12
-%define msg.pt.y           EBP - 8
 
-%define hWnd               EBP - 4
+%define wc                  EBP - 80             ; WNDCLASSEX structure. 48 bytes
+%define wc.cbSize           EBP - 80
+%define wc.style            EBP - 76
+%define wc.lpfnWndProc      EBP - 72
+%define wc.cbClsExtra       EBP - 68
+%define wc.cbWndExtra       EBP - 64
+%define wc.hInstance        EBP - 60
+%define wc.hIcon            EBP - 56
+%define wc.hCursor          EBP - 52
+%define wc.hbrBackground    EBP - 48
+%define wc.lpszMenuName     EBP - 44
+%define wc.lpszClassName    EBP - 40
+%define wc.hIconSm          EBP - 36
+
+%define msg                 EBP - 32             ; MSG structure. 28 bytes
+%define msg.hwnd            EBP - 32             ; Breaking out each member is not necessary
+%define msg.message         EBP - 28             ; in this case, but it shows where each
+%define msg.wParam          EBP - 24             ; member is on the stack
+%define msg.lParam          EBP - 20
+%define msg.time            EBP - 16
+%define msg.pt.x            EBP - 12
+%define msg.pt.y            EBP - 8
+
+%define hWnd                EBP - 4
 
 extern GetModuleHandleA
 extern GetCommandLineA
@@ -77,6 +81,14 @@ extern GetStdHandle
 extern WriteConsoleA
 extern IsDialogMessageA
 extern GetStockObject
+extern SetTimer 
+extern GetDC 
+extern SelectObject 
+extern FillRect
+extern Ellipse
+extern GetClientRect
+extern ReleaseDC
+extern KillTimer
 section .data 
     ClassName       db "ball", 0h
     AppName         db "Bouncing Ball", 0h
@@ -89,14 +101,28 @@ section .bss
     CommandLine     resd 1
     hwndEdit        resd 1
     hwndShow        resd 1
-    buffer          resb 1024
-    revstr          resb 1024
+    hDC             resd 1
+    brush           resd 1
+    stepX           resd 1
+    stepY           resd 1
+    curX            resd 1
+    curY            resd 1
+    oldX            resd 1
+    oldY            resd 1
+    temp            resq 4
+    rect            resq 4
 
+struc RECT
+    .left           resq 1
+    .top            resq 1
+    .right          resq 1
+    .bottom         resq 1
 
 section .text 
     global Start 
 
 Start:
+    call InitValue
     push NULL
     call GetModuleHandleA
     mov dword [hInstance], eax
@@ -109,6 +135,15 @@ Start:
 exit:
     push NULL
     call ExitProcess
+
+InitValue:
+    mov dword [stepX], 5
+    mov dword [stepY], 5
+    mov dword [curX], 0
+    mov dword [curY], 0
+    mov dword [oldX], 0
+    mov dword [oldY], 0
+    ret
 
 WinMain:
     ; Set up a stack frame
@@ -158,7 +193,7 @@ WinMain:
     push ClassName
     push WS_EX_CLIENTEDGE
     call CreateWindowExA
-    mov dword [hwnd], eax
+    mov dword [hWnd], eax
 
     push SW_SHOWDEFAULT
     push dword [hWnd]
@@ -206,7 +241,137 @@ WndProc:
     cmp dword [uMsg], WM_DESTROY
     je WmDestroy
 
+    cmp dword [uMsg], WM_CREATE
+    je WmCreate
+
+    cmp dword [uMsg], WM_TIMER
+    je WmTimer
+    
+
+DefaultMessage:
+    push dword [lParam]
+    push dword [wParam]
+    push dword [uMsg]
+    push dword [hWnd]
+    call DefWindowProcA
+
+    mov esp, ebp
+    pop ebp
+    ret 16
+
+WmCreate:
+    push NULL
+    push 20
+    push 1
+    push dword [hWnd]
+    call SetTimer
+    jmp WmEnd
+
+WmTimer:
+    push dword [hWnd]
+    call GetDC
+    mov dword [hDC], eax
+
+    push WHITE_BRUSH
+    call GetStockObject
+
+    push eax
+    push hDC
+    call SelectObject
+    mov dword [brush], eax
+    mov eax, [oldX]
+    mov dword [temp + RECT.left], eax
+    mov ebx, [oldY] 
+    mov dword [temp + RECT.top], ebx
+    add eax, 30
+    mov dword [temp + RECT.right], eax
+    add ebx, 30
+    mov dword [temp + RECT.bottom], eax
+
+    push dword [brush]
+    push temp
+    push dword [hDC]
+    call FillRect
+
+    push GRAY_BRUSH
+    call GetStockObject
+
+    push eax
+    push dword [hDC]
+    call SelectObject
+    mov dword [brush], eax
+    
+    mov eax, [curX]
+    add eax, 30
+    mov ebx, [curY]
+    add ebx, 30
+    push ebx
+    push eax
+    push dword [curY]
+    push dword [curX]
+    push dword [hDC]
+    call Ellipse
+
+    mov eax, [curX]
+    mov dword [oldX], eax
+    mov ebx, [curY]
+    mov dword [oldY], ebx
+    add eax, dword [stepX]
+    mov dword [curX], eax
+    add ebx, dword [stepY]
+    mov dword [curY], ebx
+
+    push rect
+    push dword [hWnd]
+    call GetClientRect
+
+    mov eax, [curX]
+    mov ebx, eax
+    add ebx, 30
+    cmp ebx, dword [rect + RECT.right]
+    ja changeDirectX
+    cmp eax, 0
+    jb changeDirectX
+
+    mov eax, [curY]
+    mov ebx, eax
+    add ebx, 30
+    cmp ebx, dword [rect + RECT.bottom]
+    ja changeDirectY
+    cmp eax, 0
+    jb changeDirectY
+    jmp WmTimerContinue
+
+    changeDirectX:
+        mov ecx, [stepX]
+        xor edx, edx 
+        sub edx, ecx 
+        mov dword [stepX], edx 
+        jmp WmTimerContinue
+
+    changeDirectY:
+        mov ecx, [stepY]
+        xor edx, edx
+        sub edx, ecx 
+        mov dword [stepY], edx 
+    
+    WmTimerContinue: 
+        push dword [brush] 
+        push dword [hDC] 
+        call SelectObject 
+
+        push dword [hDC]
+        push dword [hWnd] 
+        call ReleaseDC
+
+
+
+
 WmDestroy:
+    push 1
+    push dword [hWnd]
+    call KillTimer
+
     push NULL
     call PostQuitMessage
 
