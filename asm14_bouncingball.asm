@@ -1,3 +1,5 @@
+; nasm -f win32 asm14_bouncingball.asm -o asm14_bouncingball.obj
+; GoLink.exe /console asm14_bouncingball.obj kernel32.dll user32.dll gdi32.dll
 STD_OUTPUT_HANDLE   EQU -11
 COLOR_WINDOW        EQU 5                       ; Constants
 CS_BYTEALIGNWINDOW  EQU 2000h
@@ -113,10 +115,10 @@ section .bss
     rect            resq 4
 
 struc RECT
-    .left           resq 1
-    .top            resq 1
-    .right          resq 1
-    .bottom         resq 1
+    .left           resd 1
+    .top            resd 1
+    .right          resd 1
+    .bottom         resd 1
 
 section .text 
     global Start 
@@ -184,8 +186,8 @@ WinMain:
     push dword [hInstance]
     push NULL
     push NULL
-    push CW_USEDEFAULT
-    push CW_USEDEFAULT
+    push WindowHeight
+    push WindowWidth
     push CW_USEDEFAULT
     push CW_USEDEFAULT
     push WS_OVERLAPPEDWINDOW | WS_VISIBLE
@@ -261,38 +263,43 @@ DefaultMessage:
 
 WmCreate:
     push NULL
-    push 20
+    push 100
     push 1
     push dword [hWnd]
     call SetTimer
     jmp WmEnd
 
 WmTimer:
+    ; get dc for drawing
     push dword [hWnd]
     call GetDC
     mov dword [hDC], eax
 
+    ; use pure white
     push WHITE_BRUSH
     call GetStockObject
 
     push eax
     push hDC
     call SelectObject
+
+    ; cover old ellipse
     mov dword [brush], eax
-    mov eax, [oldX]
+    mov eax, dword [oldX]
     mov dword [temp + RECT.left], eax
-    mov ebx, [oldY] 
+    mov ebx, dword [oldY] 
     mov dword [temp + RECT.top], ebx
     add eax, 30
     mov dword [temp + RECT.right], eax
     add ebx, 30
-    mov dword [temp + RECT.bottom], eax
+    mov dword [temp + RECT.bottom], ebx
 
     push dword [brush]
     push temp
     push dword [hDC]
     call FillRect
 
+    ; use new color to draw new ellipse
     push GRAY_BRUSH
     call GetStockObject
 
@@ -300,10 +307,11 @@ WmTimer:
     push dword [hDC]
     call SelectObject
     mov dword [brush], eax
-    
-    mov eax, [curX]
+
+    ; draw new ellipse
+    mov eax, dword [curX]
     add eax, 30
-    mov ebx, [curY]
+    mov ebx, dword [curY]
     add ebx, 30
     push ebx
     push eax
@@ -312,41 +320,45 @@ WmTimer:
     push dword [hDC]
     call Ellipse
 
-    mov eax, [curX]
+    ; update values
+    mov eax, dword [curX]
     mov dword [oldX], eax
-    mov ebx, [curY]
+    mov ebx, dword [curY]
     mov dword [oldY], ebx
     add eax, dword [stepX]
     mov dword [curX], eax
     add ebx, dword [stepY]
     mov dword [curY], ebx
 
+    ; get window size
     push rect
     push dword [hWnd]
     call GetClientRect
 
-    mov eax, [curX]
-    mov ebx, eax
-    add ebx, 30
-    cmp ebx, dword [rect + RECT.right]
-    ja changeDirectX
-    cmp eax, 0
-    jb changeDirectX
-
-    mov eax, [curY]
-    mov ebx, eax
-    add ebx, 30
-    cmp ebx, dword [rect + RECT.bottom]
-    ja changeDirectY
-    cmp eax, 0
-    jb changeDirectY
-    jmp WmTimerContinue
-
+    compareChangeX:
+        mov eax, dword [curX]
+        mov ebx, eax
+        add ebx, 30
+        cmp ebx, dword [rect + RECT.right]
+        ja changeDirectX
+        cmp eax, 0
+        jb changeDirectX
+        jmp compareChangeY
     changeDirectX:
-        mov ecx, [stepX]
+        mov ecx, dword [stepX]
         xor edx, edx 
         sub edx, ecx 
         mov dword [stepX], edx 
+
+    compareChangeY:
+        mov eax, [curY]
+        mov ebx, eax
+        add ebx, 30
+        sub eax, 30
+        cmp ebx, dword [rect + RECT.bottom]
+        ja changeDirectY
+        cmp eax, 0
+        jb changeDirectY
         jmp WmTimerContinue
 
     changeDirectY:
@@ -363,7 +375,7 @@ WmTimer:
         push dword [hDC]
         push dword [hWnd] 
         call ReleaseDC
-
+        jmp WmEnd
 
 
 
