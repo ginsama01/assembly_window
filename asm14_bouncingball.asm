@@ -18,6 +18,7 @@ WM_CREATE           EQU 1
 WM_DESTROY          EQU 2
 WM_COMMAND          EQU 0111h
 WM_TIMER            EQU 0113h
+WM_SIZE             EQU 0005h
 WS_EX_COMPOSITED    EQU 2000000h
 WS_OVERLAPPEDWINDOW EQU 0CF0000h
 WS_EX_CLIENTEDGE    EQU 00000200h
@@ -29,9 +30,11 @@ ES_AUTOHSCROLL      EQU 128
 ES_READONLY         EQU 2048
 WHITE_BRUSH         EQU 0
 GRAY_BRUSH          EQU 2
+DC_BRUSH            EQU 18
+RGB_RED             EQU 000000FFh
 WindowWidth         EQU 300
 WindowHeight        EQU 200
-
+BallSize            EQU 30
 EditID              EQU 1
 ShowID              EQU 2
 
@@ -91,12 +94,13 @@ extern Ellipse
 extern GetClientRect
 extern ReleaseDC
 extern KillTimer
+extern SetDCBrushColor
+
 section .data 
     ClassName       db "ball", 0h
     AppName         db "Bouncing Ball", 0h
     EditClassName   db  "edit", 0h
 
-    
 
 section .bss 
     hInstance       resd 1
@@ -289,9 +293,9 @@ WmTimer:
     mov dword [temp + RECT.left], eax
     mov ebx, dword [oldY] 
     mov dword [temp + RECT.top], ebx
-    add eax, 30
+    add eax, BallSize
     mov dword [temp + RECT.right], eax
-    add ebx, 30
+    add ebx, BallSize
     mov dword [temp + RECT.bottom], ebx
 
     push dword [brush]
@@ -300,7 +304,7 @@ WmTimer:
     call FillRect
 
     ; use new color to draw new ellipse
-    push GRAY_BRUSH
+    push DC_BRUSH
     call GetStockObject
 
     push eax
@@ -308,11 +312,16 @@ WmTimer:
     call SelectObject
     mov dword [brush], eax
 
+    ; Set red color to brush
+    push RGB_RED
+    push dword [hDC]
+    call SetDCBrushColor
+
     ; draw new ellipse
     mov eax, dword [curX]
-    add eax, 30
+    add eax, BallSize
     mov ebx, dword [curY]
-    add ebx, 30
+    add ebx, BallSize
     push ebx
     push eax
     push dword [curY]
@@ -338,11 +347,11 @@ WmTimer:
     compareChangeX:
         mov eax, dword [curX]
         mov ebx, eax
-        add ebx, 30
+        add ebx, BallSize
         cmp ebx, dword [rect + RECT.right]
-        ja changeDirectX
+        jae changeDirectX
         cmp eax, 0
-        jb changeDirectX
+        jbe changeDirectX
         jmp compareChangeY
     changeDirectX:
         mov ecx, dword [stepX]
@@ -353,12 +362,11 @@ WmTimer:
     compareChangeY:
         mov eax, [curY]
         mov ebx, eax
-        add ebx, 30
-        sub eax, 30
+        add ebx, BallSize
         cmp ebx, dword [rect + RECT.bottom]
-        ja changeDirectY
+        jae changeDirectY
         cmp eax, 0
-        jb changeDirectY
+        jbe changeDirectY
         jmp WmTimerContinue
 
     changeDirectY:
@@ -376,7 +384,6 @@ WmTimer:
         push dword [hWnd] 
         call ReleaseDC
         jmp WmEnd
-
 
 
 WmDestroy:
