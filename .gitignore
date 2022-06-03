@@ -3,3 +3,4 @@
 !*.txt
 !.gitignore
 !README.md
+!*.c
