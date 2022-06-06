@@ -7,17 +7,20 @@ extern GetStdHandle
 extern WriteConsoleA
 extern GetWindowTextA
 extern GetClassNameA
+extern IsWindowVisible
+extern GetWindowThreadProcessId
+extern OpenProcess
+extern TerminateProcess
+extern CloseHandle
 
 section .data
-    msg2    db "Hello", 0xa, 0xd, 0x0
-    len2    equ $ -msg2
-    newline db  0xa, 0x0
-    lennl   equ $ - newline
-section .bss
-    EnumWinProc     resq 1
-    lpNumberOfCharsWritten resb 32
-    lpString        resb 31
+    firefox db 'MozillaWindowClass', 0
+    chromium db 'Chrome_WidgetWin_1', 0
 
+section .bss
+    pid         resb 8
+    classname   resb 100
+    processHandle   resb 8
 
 section .text
     global Start
@@ -31,47 +34,153 @@ Start:
     xor rcx, rcx
     call ExitProcess
 
-%define hWnd        RBP + 16
-%define lParam      RBP + 24
+
 EnumWindowsProc:
     push rbp
     mov rbp, rsp
 
+    ; local variable
+    %define hWnd        RBP + 16
+    %define lParam      RBP + 24
     mov qword [hWnd], rcx
     mov qword [lParam], rdx
 
+    ; check if window is visible
     sub rsp, 32
-    mov rcx, qword [hWnd]
-    mov rdx, lpString
-    mov r8, 30
+    mov rcx, [hWnd]
+    call IsWindowVisible
+    add rsp, 32
+    cmp rax, 0
+    je EnumRetTrue
+
+    ; get class name
+    sub rsp, 32
+    mov rcx, [hWnd]
+    mov rdx, classname
+    mov r8, 100
     call GetClassNameA
-    add rsp, 32
 
-    
-
-    sub rsp, 40
-    mov rcx, rax
-    mov rdx, lpString
-    mov r8, 30
-    mov r9, lpNumberOfCharsWritten
-    mov qword [rsp + 32], NULL
-    call WriteConsoleA
-    add rsp, 40
-
+    ; check if it's firefox browser
     sub rsp, 32
-    mov rcx, STD_OUTPUT_HANDLE
-    call GetStdHandle
+    mov rcx, classname 
+    mov rdx, firefox
+    call strcmp 
     add rsp, 32
+    cmp rax, 0
+    jne KillBrowser
+    jmp EnumRetTrue
+    ; check if it's chromium browser
+    ; sub rsp, 32
+    ; mov rcx, classname 
+    ; mov rdx, chromium
+    ; call strcmp 
+    ; add rsp, 32
+    ; cmp rax, 0
+    ; je EnumRetTrue
 
-    sub rsp, 40
-    mov rcx, rax
-    mov rdx, newline
-    mov r8, lennl
-    mov r9, lpNumberOfCharsWritten
-    mov qword [rsp + 32], NULL
-    call WriteConsoleA
-    add rsp, 40
-    mov rsp, rbp
-    pop rbp
-    mov rax, 1
-    ret 
+    KillBrowser:
+        ; find process id
+        sub rsp, 32
+        mov rcx, [hWnd]
+        mov rdx, pid 
+        call GetWindowThreadProcessId
+        add rsp, 32
+        
+        ; open process
+        sub rsp, 32
+        mov rcx, 1
+        mov rdx, 0
+        mov r8, [pid]
+        call OpenProcess
+        add rsp, 32
+
+        ; Terminate process
+        mov [processHandle], rax
+        cmp qword [processHandle], 0
+        je EnumRetFalse
+
+        sub rsp, 32
+        mov rcx, [processHandle]
+        mov rdx, 1
+        call TerminateProcess
+        add rsp, 32
+
+        ; Close process
+        sub rsp, 32
+        mov rcx, [processHandle]
+        call CloseHandle
+        add rsp, 32
+
+    EnumRetTrue:
+        mov rax, 1
+        jmp EnumDone
+
+    EnumRetFalse:
+        xor rax, rax
+
+    EnumDone:
+        mov rsp, rbp
+        pop rbp
+        ret
+
+
+strcmp:
+    push rbp
+    mov rbp, rsp
+
+    %define str1 rbp+16
+    %define str2 rbp+24
+    mov [str1], rcx
+    mov [str2], rdx
+
+    call strlen
+    mov r8, rax
+    mov rcx, [str2]
+    call strlen
+    cmp r8, rax
+    jne strcmp_false
+    
+    strcmp_loop:
+        mov rcx, [str1] 
+        mov al, byte [rcx]
+        mov rcx, [str2]
+        mov bl, byte [rcx]
+
+        cmp al, 0
+        je strcmp_true
+        cmp al, bl
+        jne strcmp_false
+        inc qword [str1]
+        inc qword [str2]
+        jmp strcmp_loop
+
+
+    strcmp_true:
+        mov rax, 1
+        jmp strcmp_done
+    
+    strcmp_false:
+        xor rax, rax
+
+    strcmp_done:
+        mov rsp, rbp
+        pop rbp
+        ret
+
+strlen:
+    push rbp
+    mov rbp, rsp
+
+    mov rax, rcx
+    strlen_loop:
+        cmp byte [rax], 0
+        je strlen_done
+        inc rax
+        jmp strlen_loop
+
+    strlen_done:
+        sub rax, rcx ; return len to rax by offset subtraction
+
+        mov rsp, rbp
+        pop rbp
+        ret
