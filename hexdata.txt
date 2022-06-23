@@ -1,0 +1,1465 @@
+.data:00494BE8                 db    1                 ; DATA XREF: sub_4911D0+3D↑o
+.data:00494BE9                 db    0
+.data:00494BEA                 db    0
+.data:00494BEB                 db    0
+.data:00494BEC                 db    0
+.data:00494BED                 db    0
+.data:00494BEE                 db    0
+.data:00494BEF                 db    0
+.data:00494BF0                 db  74h ; t
+.data:00494BF1                 db 0CCh ; Ì
+.data:00494BF2                 db 0CCh ; Ì
+.data:00494BF3                 db 0CCh ; Ì
+.data:00494BF4                 db    1
+.data:00494BF5                 db    0
+.data:00494BF6                 db    0
+.data:00494BF7                 db    0
+.data:00494BF8                 db    1
+.data:00494BF9                 db    0
+.data:00494BFA                 db    0
+.data:00494BFB                 db    0
+.data:00494BFC                 db  48h ; H
+.data:00494BFD                 db 0CCh ; Ì
+.data:00494BFE                 db 0CCh ; Ì
+.data:00494BFF                 db 0CCh ; Ì
+.data:00494C00                 db    1
+.data:00494C01                 db    0
+.data:00494C02                 db    0
+.data:00494C03                 db    0
+.data:00494C04                 db    2
+.data:00494C05                 db    0
+.data:00494C06                 db    0
+.data:00494C07                 db    0
+.data:00494C08                 db  3Bh ; ;
+.data:00494C09                 db 0CCh ; Ì
+.data:00494C0A                 db 0CCh ; Ì
+.data:00494C0B                 db 0CCh ; Ì
+.data:00494C0C                 db    2
+.data:00494C0D                 db    0
+.data:00494C0E                 db    0
+.data:00494C0F                 db    0
+.data:00494C10                 db  88h ; ˆ
+.data:00494C11                 db    0
+.data:00494C12                 db    0
+.data:00494C13                 db    0
+.data:00494C14                 db  81h
+.data:00494C15                 db  24h ; $
+.data:00494C16                 db 0CCh ; Ì
+.data:00494C17                 db 0CCh ; Ì
+.data:00494C18                 db    3
+.data:00494C19                 db    0
+.data:00494C1A                 db    0
+.data:00494C1B                 db    0
+.data:00494C1C                 db  6Fh ; o
+.data:00494C1D                 db    0
+.data:00494C1E                 db    0
+.data:00494C1F                 db    0
+.data:00494C20                 db  63h ; c
+.data:00494C21                 db  33h ; 3
+.data:00494C22                 db  59h ; Y
+.data:00494C23                 db  6Fh ; o
+.data:00494C24                 db    2
+.data:00494C25                 db    0
+.data:00494C26                 db    0
+.data:00494C27                 db    0
+.data:00494C28                 db  84h ; „
+.data:00494C29                 db    0
+.data:00494C2A                 db    0
+.data:00494C2B                 db    0
+.data:00494C2C                 db    1
+.data:00494C2D                 db    1
+.data:00494C2E                 db 0CCh ; Ì
+.data:00494C2F                 db 0CCh ; Ì
+.data:00494C30                 db    2
+.data:00494C31                 db    0
+.data:00494C32                 db    0
+.data:00494C33                 db    0
+.data:00494C34                 db  0Ah
+.data:00494C35                 db    0
+.data:00494C36                 db    0
+.data:00494C37                 db    0
+.data:00494C38                 db  35h ; 5
+.data:00494C39                 db 0AFh ; ¯
+.data:00494C3A                 db 0CCh ; Ì
+.data:00494C3B                 db 0CCh ; Ì
+.data:00494C3C                 db    1
+.data:00494C3D                 db    0
+.data:00494C3E                 db    0
+.data:00494C3F                 db    0
+.data:00494C40                 db 0D0h ; Ð
+.data:00494C41                 db    0
+.data:00494C42                 db    0
+.data:00494C43                 db    0
+.data:00494C44                 db  33h ; 3
+.data:00494C45                 db 0CCh ; Ì
+.data:00494C46                 db 0CCh ; Ì
+.data:00494C47                 db 0CCh ; Ì
+.data:00494C48                 db    3
+.data:00494C49                 db    0
+.data:00494C4A                 db    0
+.data:00494C4B                 db    0
+.data:00494C4C                 db  0Fh
+.data:00494C4D                 db    0
+.data:00494C4E                 db    0
+.data:00494C4F                 db    0
+.data:00494C50                 db  64h ; d
+.data:00494C51                 db  4Dh ; M
+.data:00494C52                 db  78h ; x
+.data:00494C53                 db  76h ; v
+.data:00494C54                 db    4
+.data:00494C55                 db    0
+.data:00494C56                 db    0
+.data:00494C57                 db    0
+.data:00494C58                 db  12h
+.data:00494C59                 db    0
+.data:00494C5A                 db    0
+.data:00494C5B                 db    0
+.data:00494C5C                 db 0DDh ; Ý
+.data:00494C5D                 db  20h
+.data:00494C5E                 db 0B1h ; ±
+.data:00494C5F                 db  1Ah
+.data:00494C60                 db    1
+.data:00494C61                 db    0
+.data:00494C62                 db    0
+.data:00494C63                 db    0
+.data:00494C64                 db    6
+.data:00494C65                 db    1
+.data:00494C66                 db    0
+.data:00494C67                 db    0
+.data:00494C68                 db  0Ch
+.data:00494C69                 db 0CCh ; Ì
+.data:00494C6A                 db 0CCh ; Ì
+.data:00494C6B                 db 0CCh ; Ì
+.data:00494C6C                 db    3
+.data:00494C6D                 db    0
+.data:00494C6E                 db    0
+.data:00494C6F                 db    0
+.data:00494C70                 db 0E8h ; è
+.data:00494C71                 db    0
+.data:00494C72                 db    0
+.data:00494C73                 db    0
+.data:00494C74                 db  6Ah ; j
+.data:00494C75                 db  44h ; D
+.data:00494C76                 db  42h ; B
+.data:00494C77                 db  35h ; 5
+.data:00494C78                 db    2
+.data:00494C79                 db    0
+.data:00494C7A                 db    0
+.data:00494C7B                 db    0
+.data:00494C7C                 db  1Dh
+.data:00494C7D                 db    0
+.data:00494C7E                 db    0
+.data:00494C7F                 db    0
+.data:00494C80                 db 0A6h ; ¦
+.data:00494C81                 db  21h ; !
+.data:00494C82                 db 0CCh ; Ì
+.data:00494C83                 db 0CCh ; Ì
+.data:00494C84                 db    2
+.data:00494C85                 db    0
+.data:00494C86                 db    0
+.data:00494C87                 db    0
+.data:00494C88                 db  1Fh
+.data:00494C89                 db    0
+.data:00494C8A                 db    0
+.data:00494C8B                 db    0
+.data:00494C8C                 db 0BEh ; ¾
+.data:00494C8D                 db  8Ah ; Š
+.data:00494C8E                 db 0CCh ; Ì
+.data:00494C8F                 db 0CCh ; Ì
+.data:00494C90                 db    1
+.data:00494C91                 db    0
+.data:00494C92                 db    0
+.data:00494C93                 db    0
+.data:00494C94                 db  21h ; !
+.data:00494C95                 db    0
+.data:00494C96                 db    0
+.data:00494C97                 db    0
+.data:00494C98                 db  4Ch ; L
+.data:00494C99                 db 0CCh ; Ì
+.data:00494C9A                 db 0CCh ; Ì
+.data:00494C9B                 db 0CCh ; Ì
+.data:00494C9C                 db    2
+.data:00494C9D                 db    0
+.data:00494C9E                 db    0
+.data:00494C9F                 db    0
+.data:00494CA0                 db  22h ; "
+.data:00494CA1                 db    0
+.data:00494CA2                 db    0
+.data:00494CA3                 db    0
+.data:00494CA4                 db  26h ; &
+.data:00494CA5                 db  0Eh
+.data:00494CA6                 db 0CCh ; Ì
+.data:00494CA7                 db 0CCh ; Ì
+.data:00494CA8                 db    1
+.data:00494CA9                 db    0
+.data:00494CAA                 db    0
+.data:00494CAB                 db    0
+.data:00494CAC                 db  24h ; $
+.data:00494CAD                 db    0
+.data:00494CAE                 db    0
+.data:00494CAF                 db    0
+.data:00494CB0                 db  35h ; 5
+.data:00494CB1                 db 0CCh ; Ì
+.data:00494CB2                 db 0CCh ; Ì
+.data:00494CB3                 db 0CCh ; Ì
+.data:00494CB4                 db    1
+.data:00494CB5                 db    0
+.data:00494CB6                 db    0
+.data:00494CB7                 db    0
+.data:00494CB8                 db  5Dh ; ]
+.data:00494CB9                 db    0
+.data:00494CBA                 db    0
+.data:00494CBB                 db    0
+.data:00494CBC                 db  3Bh ; ;
+.data:00494CBD                 db 0CCh ; Ì
+.data:00494CBE                 db 0CCh ; Ì
+.data:00494CBF                 db 0CCh ; Ì
+.data:00494CC0                 db    3
+.data:00494CC1                 db    0
+.data:00494CC2                 db    0
+.data:00494CC3                 db    0
+.data:00494CC4                 db  2Bh ; +
+.data:00494CC5                 db    0
+.data:00494CC6                 db    0
+.data:00494CC7                 db    0
+.data:00494CC8                 db  6Ah ; j
+.data:00494CC9                 db  45h ; E
+.data:00494CCA                 db  39h ; 9
+.data:00494CCB                 db  75h ; u
+.data:00494CCC                 db    4
+.data:00494CCD                 db    0
+.data:00494CCE                 db    0
+.data:00494CCF                 db    0
+.data:00494CD0                 db  16h
+.data:00494CD1                 db    0
+.data:00494CD2                 db    0
+.data:00494CD3                 db    0
+.data:00494CD4                 db  88h ; ˆ
+.data:00494CD5                 db  3Fh ; ?
+.data:00494CD6                 db 0EDh ; í
+.data:00494CD7                 db  0Dh
+.data:00494CD8                 db    3
+.data:00494CD9                 db    0
+.data:00494CDA                 db    0
+.data:00494CDB                 db    0
+.data:00494CDC                 db 0EBh ; ë
+.data:00494CDD                 db    0
+.data:00494CDE                 db    0
+.data:00494CDF                 db    0
+.data:00494CE0                 db  6Ah ; j
+.data:00494CE1                 db  33h ; 3
+.data:00494CE2                 db  56h ; V
+.data:00494CE3                 db  7Ah ; z
+.data:00494CE4                 db    2
+.data:00494CE5                 db    0
+.data:00494CE6                 db    0
+.data:00494CE7                 db    0
+.data:00494CE8                 db  32h ; 2
+.data:00494CE9                 db    0
+.data:00494CEA                 db    0
+.data:00494CEB                 db    0
+.data:00494CEC                 db  35h ; 5
+.data:00494CED                 db 0AFh ; ¯
+.data:00494CEE                 db 0CCh ; Ì
+.data:00494CEF                 db 0CCh ; Ì
+.data:00494CF0                 db    2
+.data:00494CF1                 db    0
+.data:00494CF2                 db    0
+.data:00494CF3                 db    0
+.data:00494CF4                 db  30h ; 0
+.data:00494CF5                 db    0
+.data:00494CF6                 db    0
+.data:00494CF7                 db    0
+.data:00494CF8                 db 0ABh ; «
+.data:00494CF9                 db  2Fh ; /
+.data:00494CFA                 db 0CCh ; Ì
+.data:00494CFB                 db 0CCh ; Ì
+.data:00494CFC                 db    2
+.data:00494CFD                 db    0
+.data:00494CFE                 db    0
+.data:00494CFF                 db    0
+.data:00494D00                 db    8
+.data:00494D01                 db    0
+.data:00494D02                 db    0
+.data:00494D03                 db    0
+.data:00494D04                 db  81h
+.data:00494D05                 db  36h ; 6
+.data:00494D06                 db 0CCh ; Ì
+.data:00494D07                 db 0CCh ; Ì
+.data:00494D08                 db    3
+.data:00494D09                 db    0
+.data:00494D0A                 db    0
+.data:00494D0B                 db    0
+.data:00494D0C                 db  34h ; 4
+.data:00494D0D                 db    0
+.data:00494D0E                 db    0
+.data:00494D0F                 db    0
+.data:00494D10                 db  6Ah ; j
+.data:00494D11                 db  6Ch ; l
+.data:00494D12                 db  63h ; c
+.data:00494D13                 db  75h ; u
+.data:00494D14                 db    1
+.data:00494D15                 db    0
+.data:00494D16                 db    0
+.data:00494D17                 db    0
+.data:00494D18                 db  37h ; 7
+.data:00494D19                 db    0
+.data:00494D1A                 db    0
+.data:00494D1B                 db    0
+.data:00494D1C                 db    0
+.data:00494D1D                 db 0CCh ; Ì
+.data:00494D1E                 db 0CCh ; Ì
+.data:00494D1F                 db 0CCh ; Ì
+.data:00494D20                 db    2
+.data:00494D21                 db    0
+.data:00494D22                 db    0
+.data:00494D23                 db    0
+.data:00494D24                 db  38h ; 8
+.data:00494D25                 db    0
+.data:00494D26                 db    0
+.data:00494D27                 db    0
+.data:00494D28                 db  25h ; %
+.data:00494D29                 db  3Ch ; <
+.data:00494D2A                 db 0CCh ; Ì
+.data:00494D2B                 db 0CCh ; Ì
+.data:00494D2C                 db    3
+.data:00494D2D                 db    0
+.data:00494D2E                 db    0
+.data:00494D2F                 db    0
+.data:00494D30                 db  53h ; S
+.data:00494D31                 db    0
+.data:00494D32                 db    0
+.data:00494D33                 db    0
+.data:00494D34                 db  49h ; I
+.data:00494D35                 db  46h ; F
+.data:00494D36                 db  52h ; R
+.data:00494D37                 db  67h ; g
+.data:00494D38                 db    1
+.data:00494D39                 db    0
+.data:00494D3A                 db    0
+.data:00494D3B                 db    0
+.data:00494D3C                 db  3Eh ; >
+.data:00494D3D                 db    0
+.data:00494D3E                 db    0
+.data:00494D3F                 db    0
+.data:00494D40                 db  21h ; !
+.data:00494D41                 db 0CCh ; Ì
+.data:00494D42                 db 0CCh ; Ì
+.data:00494D43                 db 0CCh ; Ì
+.data:00494D44                 db    1
+.data:00494D45                 db    0
+.data:00494D46                 db    0
+.data:00494D47                 db    0
+.data:00494D48                 db  3Fh ; ?
+.data:00494D49                 db    0
+.data:00494D4A                 db    0
+.data:00494D4B                 db    0
+.data:00494D4C                 db  54h ; T
+.data:00494D4D                 db 0CCh ; Ì
+.data:00494D4E                 db 0CCh ; Ì
+.data:00494D4F                 db 0CCh ; Ì
+.data:00494D50                 db    1
+.data:00494D51                 db    0
+.data:00494D52                 db    0
+.data:00494D53                 db    0
+.data:00494D54                 db  92h ; ’
+.data:00494D55                 db    0
+.data:00494D56                 db    0
+.data:00494D57                 db    0
+.data:00494D58                 db  37h ; 7
+.data:00494D59                 db 0CCh ; Ì
+.data:00494D5A                 db 0CCh ; Ì
+.data:00494D5B                 db 0CCh ; Ì
+.data:00494D5C                 db    1
+.data:00494D5D                 db    0
+.data:00494D5E                 db    0
+.data:00494D5F                 db    0
+.data:00494D60                 db  86h ; †
+.data:00494D61                 db    0
+.data:00494D62                 db    0
+.data:00494D63                 db    0
+.data:00494D64                 db  74h ; t
+.data:00494D65                 db 0CCh ; Ì
+.data:00494D66                 db 0CCh ; Ì
+.data:00494D67                 db 0CCh ; Ì
+.data:00494D68                 db    4
+.data:00494D69                 db    0
+.data:00494D6A                 db    0
+.data:00494D6B                 db    0
+.data:00494D6C                 db    9
+.data:00494D6D                 db    1
+.data:00494D6E                 db    0
+.data:00494D6F                 db    0
+.data:00494D70                 db 0C0h ; À
+.data:00494D71                 db  36h ; 6
+.data:00494D72                 db 0FDh ; ý
+.data:00494D73                 db  13h
+.data:00494D74                 db    1
+.data:00494D75                 db    0
+.data:00494D76                 db    0
+.data:00494D77                 db    0
+.data:00494D78                 db  4Ah ; J
+.data:00494D79                 db    0
+.data:00494D7A                 db    0
+.data:00494D7B                 db    0
+.data:00494D7C                 db    0
+.data:00494D7D                 db 0CCh ; Ì
+.data:00494D7E                 db 0CCh ; Ì
+.data:00494D7F                 db 0CCh ; Ì
+.data:00494D80                 db    1
+.data:00494D81                 db    0
+.data:00494D82                 db    0
+.data:00494D83                 db    0
+.data:00494D84                 db  0Dh
+.data:00494D85                 db    1
+.data:00494D86                 db    0
+.data:00494D87                 db    0
+.data:00494D88                 db  52h ; R
+.data:00494D89                 db 0CCh ; Ì
+.data:00494D8A                 db 0CCh ; Ì
+.data:00494D8B                 db 0CCh ; Ì
+.data:00494D8C                 db    4
+.data:00494D8D                 db    0
+.data:00494D8E                 db    0
+.data:00494D8F                 db    0
+.data:00494D90                 db  4Dh ; M
+.data:00494D91                 db    0
+.data:00494D92                 db    0
+.data:00494D93                 db    0
+.data:00494D94                 db 0C1h ; Á
+.data:00494D95                 db  3Dh ; =
+.data:00494D96                 db 0BAh ; º
+.data:00494D97                 db  43h ; C
+.data:00494D98                 db    3
+.data:00494D99                 db    0
+.data:00494D9A                 db    0
+.data:00494D9B                 db    0
+.data:00494D9C                 db  1Ch
+.data:00494D9D                 db    1
+.data:00494D9E                 db    0
+.data:00494D9F                 db    0
+.data:00494DA0                 db  64h ; d
+.data:00494DA1                 db  32h ; 2
+.data:00494DA2                 db  77h ; w
+.data:00494DA3                 db  6Fh ; o
+.data:00494DA4                 db    4
+.data:00494DA5                 db    0
+.data:00494DA6                 db    0
+.data:00494DA7                 db    0
+.data:00494DA8                 db  3Ah ; :
+.data:00494DA9                 db    0
+.data:00494DAA                 db    0
+.data:00494DAB                 db    0
+.data:00494DAC                 db 0CDh ; Í
+.data:00494DAD                 db  73h ; s
+.data:00494DAE                 db 0B0h ; °
+.data:00494DAF                 db  0Ch
+.data:00494DB0                 db    4
+.data:00494DB1                 db    0
+.data:00494DB2                 db    0
+.data:00494DB3                 db    0
+.data:00494DB4                 db  56h ; V
+.data:00494DB5                 db    0
+.data:00494DB6                 db    0
+.data:00494DB7                 db    0
+.data:00494DB8                 db 0CDh ; Í
+.data:00494DB9                 db  73h ; s
+.data:00494DBA                 db 0B9h ; ¹
+.data:00494DBB                 db    6
+.data:00494DBC                 db    3
+.data:00494DBD                 db    0
+.data:00494DBE                 db    0
+.data:00494DBF                 db    0
+.data:00494DC0                 db  5Ah ; Z
+.data:00494DC1                 db    0
+.data:00494DC2                 db    0
+.data:00494DC3                 db    0
+.data:00494DC4                 db  51h ; Q
+.data:00494DC5                 db  32h ; 2
+.data:00494DC6                 db  6Dh ; m
+.data:00494DC7                 db  79h ; y
+.data:00494DC8                 db    4
+.data:00494DC9                 db    0
+.data:00494DCA                 db    0
+.data:00494DCB                 db    0
+.data:00494DCC                 db  0Fh
+.data:00494DCD                 db    1
+.data:00494DCE                 db    0
+.data:00494DCF                 db    0
+.data:00494DD0                 db 0CBh ; Ë
+.data:00494DD1                 db  36h ; 6
+.data:00494DD2                 db 0AEh ; ®
+.data:00494DD3                 db  10h
+.data:00494DD4                 db    1
+.data:00494DD5                 db    0
+.data:00494DD6                 db    0
+.data:00494DD7                 db    0
+.data:00494DD8                 db  5Eh ; ^
+.data:00494DD9                 db    0
+.data:00494DDA                 db    0
+.data:00494DDB                 db    0
+.data:00494DDC                 db  3Dh ; =
+.data:00494DDD                 db 0CCh ; Ì
+.data:00494DDE                 db 0CCh ; Ì
+.data:00494DDF                 db 0CCh ; Ì
+.data:00494DE0                 db    2
+.data:00494DE1                 db    0
+.data:00494DE2                 db    0
+.data:00494DE3                 db    0
+.data:00494DE4                 db  5Fh ; _
+.data:00494DE5                 db    0
+.data:00494DE6                 db    0
+.data:00494DE7                 db    0
+.data:00494DE8                 db    1
+.data:00494DE9                 db  21h ; !
+.data:00494DEA                 db 0CCh ; Ì
+.data:00494DEB                 db 0CCh ; Ì
+.data:00494DEC                 db    4
+.data:00494DED                 db    0
+.data:00494DEE                 db    0
+.data:00494DEF                 db    0
+.data:00494DF0                 db  68h ; h
+.data:00494DF1                 db    0
+.data:00494DF2                 db    0
+.data:00494DF3                 db    0
+.data:00494DF4                 db  88h ; ˆ
+.data:00494DF5                 db  27h ; '
+.data:00494DF6                 db 0B5h ; µ
+.data:00494DF7                 db    6
+.data:00494DF8                 db    1
+.data:00494DF9                 db    0
+.data:00494DFA                 db    0
+.data:00494DFB                 db    0
+.data:00494DFC                 db 0BAh ; º
+.data:00494DFD                 db    0
+.data:00494DFE                 db    0
+.data:00494DFF                 db    0
+.data:00494E00                 db  44h ; D
+.data:00494E01                 db 0CCh ; Ì
+.data:00494E02                 db 0CCh ; Ì
+.data:00494E03                 db 0CCh ; Ì
+.data:00494E04                 db    4
+.data:00494E05                 db    0
+.data:00494E06                 db    0
+.data:00494E07                 db    0
+.data:00494E08                 db  9Ah ; š
+.data:00494E09                 db    0
+.data:00494E0A                 db    0
+.data:00494E0B                 db    0
+.data:00494E0C                 db 0DCh ; Ü
+.data:00494E0D                 db  3Ah ; :
+.data:00494E0E                 db 0BAh ; º
+.data:00494E0F                 db    6
+.data:00494E10                 db    3
+.data:00494E11                 db    0
+.data:00494E12                 db    0
+.data:00494E13                 db    0
+.data:00494E14                 db  6Ch ; l
+.data:00494E15                 db    0
+.data:00494E16                 db    0
+.data:00494E17                 db    0
+.data:00494E18                 db  49h ; I
+.data:00494E19                 db  46h ; F
+.data:00494E1A                 db  4Ah ; J
+.data:00494E1B                 db  6Dh ; m
+.data:00494E1C                 db    4
+.data:00494E1D                 db    0
+.data:00494E1E                 db    0
+.data:00494E1F                 db    0
+.data:00494E20                 db    4
+.data:00494E21                 db    0
+.data:00494E22                 db    0
+.data:00494E23                 db    0
+.data:00494E24                 db  88h ; ˆ
+.data:00494E25                 db  62h ; b
+.data:00494E26                 db 0AEh ; ®
+.data:00494E27                 db  43h ; C
+.data:00494E28                 db    4
+.data:00494E29                 db    0
+.data:00494E2A                 db    0
+.data:00494E2B                 db    0
+.data:00494E2C                 db  72h ; r
+.data:00494E2D                 db    0
+.data:00494E2E                 db    0
+.data:00494E2F                 db    0
+.data:00494E30                 db 0C1h ; Á
+.data:00494E31                 db  20h
+.data:00494E32                 db 0FDh ; ý
+.data:00494E33                 db  0Eh
+.data:00494E34                 db    2
+.data:00494E35                 db    0
+.data:00494E36                 db    0
+.data:00494E37                 db    0
+.data:00494E38                 db 0C7h ; Ç
+.data:00494E39                 db    0
+.data:00494E3A                 db    0
+.data:00494E3B                 db    0
+.data:00494E3C                 db  3Dh ; =
+.data:00494E3D                 db  86h ; †
+.data:00494E3E                 db 0CCh ; Ì
+.data:00494E3F                 db 0CCh ; Ì
+.data:00494E40                 db    1
+.data:00494E41                 db    0
+.data:00494E42                 db    0
+.data:00494E43                 db    0
+.data:00494E44                 db  7Ah ; z
+.data:00494E45                 db    0
+.data:00494E46                 db    0
+.data:00494E47                 db    0
+.data:00494E48                 db  2Bh ; +
+.data:00494E49                 db 0CCh ; Ì
+.data:00494E4A                 db 0CCh ; Ì
+.data:00494E4B                 db 0CCh ; Ì
+.data:00494E4C                 db    4
+.data:00494E4D                 db    0
+.data:00494E4E                 db    0
+.data:00494E4F                 db    0
+.data:00494E50                 db  7Bh ; {
+.data:00494E51                 db    0
+.data:00494E52                 db    0
+.data:00494E53                 db    0
+.data:00494E54                 db  88h ; ˆ
+.data:00494E55                 db  27h ; '
+.data:00494E56                 db 0B8h ; ¸
+.data:00494E57                 db  0Dh
+.data:00494E58                 db    1
+.data:00494E59                 db    0
+.data:00494E5A                 db    0
+.data:00494E5B                 db    0
+.data:00494E5C                 db 0C6h ; Æ
+.data:00494E5D                 db    0
+.data:00494E5E                 db    0
+.data:00494E5F                 db    0
+.data:00494E60                 db  0Eh
+.data:00494E61                 db 0CCh ; Ì
+.data:00494E62                 db 0CCh ; Ì
+.data:00494E63                 db 0CCh ; Ì
+.data:00494E64                 db    1
+.data:00494E65                 db    0
+.data:00494E66                 db    0
+.data:00494E67                 db    0
+.data:00494E68                 db  83h ; ƒ
+.data:00494E69                 db    0
+.data:00494E6A                 db    0
+.data:00494E6B                 db    0
+.data:00494E6C                 db  2Bh ; +
+.data:00494E6D                 db 0CCh ; Ì
+.data:00494E6E                 db 0CCh ; Ì
+.data:00494E6F                 db 0CCh ; Ì
+.data:00494E70                 db    1
+.data:00494E71                 db    0
+.data:00494E72                 db    0
+.data:00494E73                 db    0
+.data:00494E74                 db    3
+.data:00494E75                 db    0
+.data:00494E76                 db    0
+.data:00494E77                 db    0
+.data:00494E78                 db    1
+.data:00494E79                 db 0CCh ; Ì
+.data:00494E7A                 db 0CCh ; Ì
+.data:00494E7B                 db 0CCh ; Ì
+.data:00494E7C                 db    4
+.data:00494E7D                 db    0
+.data:00494E7E                 db    0
+.data:00494E7F                 db    0
+.data:00494E80                 db  93h ; “
+.data:00494E81                 db    0
+.data:00494E82                 db    0
+.data:00494E83                 db    0
+.data:00494E84                 db  88h ; ˆ
+.data:00494E85                 db  23h ; #
+.data:00494E86                 db 0BCh ; ¼
+.data:00494E87                 db  13h
+.data:00494E88                 db    4
+.data:00494E89                 db    0
+.data:00494E8A                 db    0
+.data:00494E8B                 db    0
+.data:00494E8C                 db 0A9h ; ©
+.data:00494E8D                 db    0
+.data:00494E8E                 db    0
+.data:00494E8F                 db    0
+.data:00494E90                 db  88h ; ˆ
+.data:00494E91                 db  37h ; 7
+.data:00494E92                 db 0B2h ; ²
+.data:00494E93                 db  43h ; C
+.data:00494E94                 db    3
+.data:00494E95                 db    0
+.data:00494E96                 db    0
+.data:00494E97                 db    0
+.data:00494E98                 db  0Ch
+.data:00494E99                 db    0
+.data:00494E9A                 db    0
+.data:00494E9B                 db    0
+.data:00494E9C                 db  5Ah ; Z
+.data:00494E9D                 db  47h ; G
+.data:00494E9E                 db  6Dh ; m
+.data:00494E9F                 db  43h ; C
+.data:00494EA0                 db    4
+.data:00494EA1                 db    0
+.data:00494EA2                 db    0
+.data:00494EA3                 db    0
+.data:00494EA4                 db  8Ah ; Š
+.data:00494EA5                 db    0
+.data:00494EA6                 db    0
+.data:00494EA7                 db    0
+.data:00494EA8                 db 0CEh ; Î
+.data:00494EA9                 db  36h ; 6
+.data:00494EAA                 db 0BCh ; ¼
+.data:00494EAB                 db  11h
+.data:00494EAC                 db    4
+.data:00494EAD                 db    0
+.data:00494EAE                 db    0
+.data:00494EAF                 db    0
+.data:00494EB0                 db  8Eh ; Ž
+.data:00494EB1                 db    0
+.data:00494EB2                 db    0
+.data:00494EB3                 db    0
+.data:00494EB4                 db 0DBh ; Û
+.data:00494EB5                 db  73h ; s
+.data:00494EB6                 db 0BCh ; ¼
+.data:00494EB7                 db  11h
+.data:00494EB8                 db    4
+.data:00494EB9                 db    0
+.data:00494EBA                 db    0
+.data:00494EBB                 db    0
+.data:00494EBC                 db 0AFh ; ¯
+.data:00494EBD                 db    0
+.data:00494EBE                 db    0
+.data:00494EBF                 db    0
+.data:00494EC0                 db 0D1h ; Ñ
+.data:00494EC1                 db  27h ; '
+.data:00494EC2                 db 0B5h ; µ
+.data:00494EC3                 db  0Ah
+.data:00494EC4                 db    2
+.data:00494EC5                 db    0
+.data:00494EC6                 db    0
+.data:00494EC7                 db    0
+.data:00494EC8                 db  44h ; D
+.data:00494EC9                 db    0
+.data:00494ECA                 db    0
+.data:00494ECB                 db    0
+.data:00494ECC                 db  25h ; %
+.data:00494ECD                 db 0A5h ; ¥
+.data:00494ECE                 db 0CCh ; Ì
+.data:00494ECF                 db 0CCh ; Ì
+.data:00494ED0                 db    1
+.data:00494ED1                 db    0
+.data:00494ED2                 db    0
+.data:00494ED3                 db    0
+.data:00494ED4                 db  97h ; —
+.data:00494ED5                 db    0
+.data:00494ED6                 db    0
+.data:00494ED7                 db    0
+.data:00494ED8                 db  37h ; 7
+.data:00494ED9                 db 0CCh ; Ì
+.data:00494EDA                 db 0CCh ; Ì
+.data:00494EDB                 db 0CCh ; Ì
+.data:00494EDC                 db    2
+.data:00494EDD                 db    0
+.data:00494EDE                 db    0
+.data:00494EDF                 db    0
+.data:00494EE0                 db  98h ; ˜
+.data:00494EE1                 db    0
+.data:00494EE2                 db    0
+.data:00494EE3                 db    0
+.data:00494EE4                 db    1
+.data:00494EE5                 db  2Fh ; /
+.data:00494EE6                 db 0CCh ; Ì
+.data:00494EE7                 db 0CCh ; Ì
+.data:00494EE8                 db    4
+.data:00494EE9                 db    0
+.data:00494EEA                 db    0
+.data:00494EEB                 db    0
+.data:00494EEC                 db  61h ; a
+.data:00494EED                 db    0
+.data:00494EEE                 db    0
+.data:00494EEF                 db    0
+.data:00494EF0                 db 0DCh ; Ü
+.data:00494EF1                 db  3Ch ; <
+.data:00494EF2                 db 0FDh ; ý
+.data:00494EF3                 db    2
+.data:00494EF4                 db    1
+.data:00494EF5                 db    0
+.data:00494EF6                 db    0
+.data:00494EF7                 db    0
+.data:00494EF8                 db  9Eh ; ž
+.data:00494EF9                 db    0
+.data:00494EFA                 db    0
+.data:00494EFB                 db    0
+.data:00494EFC                 db  52h ; R
+.data:00494EFD                 db 0CCh ; Ì
+.data:00494EFE                 db 0CCh ; Ì
+.data:00494EFF                 db 0CCh ; Ì
+.data:00494F00                 db    4
+.data:00494F01                 db    0
+.data:00494F02                 db    0
+.data:00494F03                 db    0
+.data:00494F04                 db  9Fh ; Ÿ
+.data:00494F05                 db    0
+.data:00494F06                 db    0
+.data:00494F07                 db    0
+.data:00494F08                 db 0DBh ; Û
+.data:00494F09                 db  7Dh ; }
+.data:00494F0A                 db 0FDh ; ý
+.data:00494F0B                 db  3Ah ; :
+.data:00494F0C                 db    4
+.data:00494F0D                 db    0
+.data:00494F0E                 db    0
+.data:00494F0F                 db    0
+.data:00494F10                 db  46h ; F
+.data:00494F11                 db    0
+.data:00494F12                 db    0
+.data:00494F13                 db    0
+.data:00494F14                 db 0CBh ; Ë
+.data:00494F15                 db  26h ; &
+.data:00494F16                 db 0B1h ; ±
+.data:00494F17                 db  17h
+.data:00494F18                 db    1
+.data:00494F19                 db    0
+.data:00494F1A                 db    0
+.data:00494F1B                 db    0
+.data:00494F1C                 db 0A7h ; §
+.data:00494F1D                 db    0
+.data:00494F1E                 db    0
+.data:00494F1F                 db    0
+.data:00494F20                 db  33h ; 3
+.data:00494F21                 db 0CCh ; Ì
+.data:00494F22                 db 0CCh ; Ì
+.data:00494F23                 db 0CCh ; Ì
+.data:00494F24                 db    1
+.data:00494F25                 db    0
+.data:00494F26                 db    0
+.data:00494F27                 db    0
+.data:00494F28                 db  2Fh ; /
+.data:00494F29                 db    0
+.data:00494F2A                 db    0
+.data:00494F2B                 db    0
+.data:00494F2C                 db    0
+.data:00494F2D                 db 0CCh ; Ì
+.data:00494F2E                 db 0CCh ; Ì
+.data:00494F2F                 db 0CCh ; Ì
+.data:00494F30                 db    1
+.data:00494F31                 db    0
+.data:00494F32                 db    0
+.data:00494F33                 db    0
+.data:00494F34                 db  87h ; ‡
+.data:00494F35                 db    0
+.data:00494F36                 db    0
+.data:00494F37                 db    0
+.data:00494F38                 db  48h ; H
+.data:00494F39                 db 0CCh ; Ì
+.data:00494F3A                 db 0CCh ; Ì
+.data:00494F3B                 db 0CCh ; Ì
+.data:00494F3C                 db    1
+.data:00494F3D                 db    0
+.data:00494F3E                 db    0
+.data:00494F3F                 db    0
+.data:00494F40                 db 0ADh ; ­
+.data:00494F41                 db    0
+.data:00494F42                 db    0
+.data:00494F43                 db    0
+.data:00494F44                 db  33h ; 3
+.data:00494F45                 db 0CCh ; Ì
+.data:00494F46                 db 0CCh ; Ì
+.data:00494F47                 db 0CCh ; Ì
+.data:00494F48                 db    1
+.data:00494F49                 db    0
+.data:00494F4A                 db    0
+.data:00494F4B                 db    0
+.data:00494F4C                 db 0AEh ; ®
+.data:00494F4D                 db    0
+.data:00494F4E                 db    0
+.data:00494F4F                 db    0
+.data:00494F50                 db  4Eh ; N
+.data:00494F51                 db 0CCh ; Ì
+.data:00494F52                 db 0CCh ; Ì
+.data:00494F53                 db 0CCh ; Ì
+.data:00494F54                 db    4
+.data:00494F55                 db    0
+.data:00494F56                 db    0
+.data:00494F57                 db    0
+.data:00494F58                 db 0C9h ; É
+.data:00494F59                 db    0
+.data:00494F5A                 db    0
+.data:00494F5B                 db    0
+.data:00494F5C                 db 0C7h ; Ç
+.data:00494F5D                 db  26h ; &
+.data:00494F5E                 db 0FDh ; ý
+.data:00494F5F                 db    0
+.data:00494F60                 db    2
+.data:00494F61                 db    0
+.data:00494F62                 db    0
+.data:00494F63                 db    0
+.data:00494F64                 db 0B3h ; ³
+.data:00494F65                 db    0
+.data:00494F66                 db    0
+.data:00494F67                 db    0
+.data:00494F68                 db  22h ; "
+.data:00494F69                 db 0A1h ; ¡
+.data:00494F6A                 db 0CCh ; Ì
+.data:00494F6B                 db 0CCh ; Ì
+.data:00494F6C                 db    1
+.data:00494F6D                 db    0
+.data:00494F6E                 db    0
+.data:00494F6F                 db    0
+.data:00494F70                 db 0B5h ; µ
+.data:00494F71                 db    0
+.data:00494F72                 db    0
+.data:00494F73                 db    0
+.data:00494F74                 db    0
+.data:00494F75                 db 0CCh ; Ì
+.data:00494F76                 db 0CCh ; Ì
+.data:00494F77                 db 0CCh ; Ì
+.data:00494F78                 db    4
+.data:00494F79                 db    0
+.data:00494F7A                 db    0
+.data:00494F7B                 db    0
+.data:00494F7C                 db 0B6h ; ¶
+.data:00494F7D                 db    0
+.data:00494F7E                 db    0
+.data:00494F7F                 db    0
+.data:00494F80                 db 0D1h ; Ñ
+.data:00494F81                 db  3Ch ; <
+.data:00494F82                 db 0A8h ; ¨
+.data:00494F83                 db  43h ; C
+.data:00494F84                 db    3
+.data:00494F85                 db    0
+.data:00494F86                 db    0
+.data:00494F87                 db    0
+.data:00494F88                 db  65h ; e
+.data:00494F89                 db    0
+.data:00494F8A                 db    0
+.data:00494F8B                 db    0
+.data:00494F8C                 db  51h ; Q
+.data:00494F8D                 db  33h ; 3
+.data:00494F8E                 db  59h ; Y
+.data:00494F8F                 db  73h ; s
+.data:00494F90                 db    1
+.data:00494F91                 db    0
+.data:00494F92                 db    0
+.data:00494F93                 db    0
+.data:00494F94                 db 0BBh ; »
+.data:00494F95                 db    0
+.data:00494F96                 db    0
+.data:00494F97                 db    0
+.data:00494F98                 db  37h ; 7
+.data:00494F99                 db 0CCh ; Ì
+.data:00494F9A                 db 0CCh ; Ì
+.data:00494F9B                 db 0CCh ; Ì
+.data:00494F9C                 db    1
+.data:00494F9D                 db    0
+.data:00494F9E                 db    0
+.data:00494F9F                 db    0
+.data:00494FA0                 db 0BCh ; ¼
+.data:00494FA1                 db    0
+.data:00494FA2                 db    0
+.data:00494FA3                 db    0
+.data:00494FA4                 db  31h ; 1
+.data:00494FA5                 db 0CCh ; Ì
+.data:00494FA6                 db 0CCh ; Ì
+.data:00494FA7                 db 0CCh ; Ì
+.data:00494FA8                 db    4
+.data:00494FA9                 db    0
+.data:00494FAA                 db    0
+.data:00494FAB                 db    0
+.data:00494FAC                 db 0D2h ; Ò
+.data:00494FAD                 db    0
+.data:00494FAE                 db    0
+.data:00494FAF                 db    0
+.data:00494FB0                 db 0DCh ; Ü
+.data:00494FB1                 db  73h ; s
+.data:00494FB2                 db 0A9h ; ©
+.data:00494FB3                 db  0Ch
+.data:00494FB4                 db    3
+.data:00494FB5                 db    0
+.data:00494FB6                 db    0
+.data:00494FB7                 db    0
+.data:00494FB8                 db 0BFh ; ¿
+.data:00494FB9                 db    0
+.data:00494FBA                 db    0
+.data:00494FBB                 db    0
+.data:00494FBC                 db  5Ah ; Z
+.data:00494FBD                 db  54h ; T
+.data:00494FBE                 db  42h ; B
+.data:00494FBF                 db  38h ; 8
+.data:00494FC0                 db    2
+.data:00494FC1                 db    0
+.data:00494FC2                 db    0
+.data:00494FC3                 db    0
+.data:00494FC4                 db 0C2h ; Â
+.data:00494FC5                 db    0
+.data:00494FC6                 db    0
+.data:00494FC7                 db    0
+.data:00494FC8                 db  81h
+.data:00494FC9                 db  21h ; !
+.data:00494FCA                 db 0CCh ; Ì
+.data:00494FCB                 db 0CCh ; Ì
+.data:00494FCC                 db    1
+.data:00494FCD                 db    0
+.data:00494FCE                 db    0
+.data:00494FCF                 db    0
+.data:00494FD0                 db 0DAh ; Ú
+.data:00494FD1                 db    0
+.data:00494FD2                 db    0
+.data:00494FD3                 db    0
+.data:00494FD4                 db  4Eh ; N
+.data:00494FD5                 db 0CCh ; Ì
+.data:00494FD6                 db 0CCh ; Ì
+.data:00494FD7                 db 0CCh ; Ì
+.data:00494FD8                 db    4
+.data:00494FD9                 db    0
+.data:00494FDA                 db    0
+.data:00494FDB                 db    0
+.data:00494FDC                 db  7Fh ; 
+.data:00494FDD                 db    0
+.data:00494FDE                 db    0
+.data:00494FDF                 db    0
+.data:00494FE0                 db 0C9h ; É
+.data:00494FE1                 db  30h ; 0
+.data:00494FE2                 db 0B4h ; ´
+.data:00494FE3                 db  17h
+.data:00494FE4                 db    4
+.data:00494FE5                 db    0
+.data:00494FE6                 db    0
+.data:00494FE7                 db    0
+.data:00494FE8                 db  76h ; v
+.data:00494FE9                 db    0
+.data:00494FEA                 db    0
+.data:00494FEB                 db    0
+.data:00494FEC                 db 0CDh ; Í
+.data:00494FED                 db  21h ; !
+.data:00494FEE                 db 0B8h ; ¸
+.data:00494FEF                 db  0Fh
+.data:00494FF0                 db    4
+.data:00494FF1                 db    0
+.data:00494FF2                 db    0
+.data:00494FF3                 db    0
+.data:00494FF4                 db 0FBh ; û
+.data:00494FF5                 db    0
+.data:00494FF6                 db    0
+.data:00494FF7                 db    0
+.data:00494FF8                 db 0CDh ; Í
+.data:00494FF9                 db  73h ; s
+.data:00494FFA                 db 0ADh ; ­
+.data:00494FFB                 db  11h
+.data:00494FFC                 db    2
+.data:00494FFD                 db    0
+.data:00494FFE                 db    0
+.data:00494FFF                 db    0
+.data:00495000                 db 0CDh ; Í
+.data:00495001                 db    0
+.data:00495002                 db    0
+.data:00495003                 db    0
+.data:00495004                 db 0A6h ; ¦
+.data:00495005                 db  26h ; &
+.data:00495006                 db 0CCh ; Ì
+.data:00495007                 db 0CCh ; Ì
+.data:00495008                 db    1
+.data:00495009                 db    0
+.data:0049500A                 db    0
+.data:0049500B                 db    0
+.data:0049500C                 db 0CFh ; Ï
+.data:0049500D                 db    0
+.data:0049500E                 db    0
+.data:0049500F                 db    0
+.data:00495010                 db    0
+.data:00495011                 db 0CCh ; Ì
+.data:00495012                 db 0CCh ; Ì
+.data:00495013                 db 0CCh ; Ì
+.data:00495014                 db    2
+.data:00495015                 db    0
+.data:00495016                 db    0
+.data:00495017                 db    0
+.data:00495018                 db  4Bh ; K
+.data:00495019                 db    0
+.data:0049501A                 db    0
+.data:0049501B                 db    0
+.data:0049501C                 db  25h ; %
+.data:0049501D                 db  2Ch ; ,
+.data:0049501E                 db 0CCh ; Ì
+.data:0049501F                 db 0CCh ; Ì
+.data:00495020                 db    1
+.data:00495021                 db    0
+.data:00495022                 db    0
+.data:00495023                 db    0
+.data:00495024                 db 0D1h ; Ñ
+.data:00495025                 db    0
+.data:00495026                 db    0
+.data:00495027                 db    0
+.data:00495028                 db  31h ; 1
+.data:00495029                 db 0CCh ; Ì
+.data:0049502A                 db 0CCh ; Ì
+.data:0049502B                 db 0CCh ; Ì
+.data:0049502C                 db    2
+.data:0049502D                 db    0
+.data:0049502E                 db    0
+.data:0049502F                 db    0
+.data:00495030                 db 0BDh ; ½
+.data:00495031                 db    0
+.data:00495032                 db    0
+.data:00495033                 db    0
+.data:00495034                 db 0A3h ; £
+.data:00495035                 db  22h ; "
+.data:00495036                 db 0CCh ; Ì
+.data:00495037                 db 0CCh ; Ì
+.data:00495038                 db    3
+.data:00495039                 db    0
+.data:0049503A                 db    0
+.data:0049503B                 db    0
+.data:0049503C                 db  13h
+.data:0049503D                 db    1
+.data:0049503E                 db    0
+.data:0049503F                 db    0
+.data:00495040                 db  49h ; I
+.data:00495041                 db  47h ; G
+.data:00495042                 db  6Dh ; m
+.data:00495043                 db  79h ; y
+.data:00495044                 db    2
+.data:00495045                 db    0
+.data:00495046                 db    0
+.data:00495047                 db    0
+.data:00495048                 db 0C4h ; Ä
+.data:00495049                 db    0
+.data:0049504A                 db    0
+.data:0049504B                 db    0
+.data:0049504C                 db  26h ; &
+.data:0049504D                 db 0A4h ; ¤
+.data:0049504E                 db 0CCh ; Ì
+.data:0049504F                 db 0CCh ; Ì
+.data:00495050                 db    3
+.data:00495051                 db    0
+.data:00495052                 db    0
+.data:00495053                 db    0
+.data:00495054                 db 0EFh ; ï
+.data:00495055                 db    0
+.data:00495056                 db    0
+.data:00495057                 db    0
+.data:00495058                 db  6Ah ; j
+.data:00495059                 db  47h ; G
+.data:0049505A                 db  6Dh ; m
+.data:0049505B                 db  6Ch ; l
+.data:0049505C                 db    4
+.data:0049505D                 db    0
+.data:0049505E                 db    0
+.data:0049505F                 db    0
+.data:00495060                 db 0DCh ; Ü
+.data:00495061                 db    0
+.data:00495062                 db    0
+.data:00495063                 db    0
+.data:00495064                 db 0CDh ; Í
+.data:00495065                 db  73h ; s
+.data:00495066                 db 0BCh ; ¼
+.data:00495067                 db  0Dh
+.data:00495068                 db    1
+.data:00495069                 db    0
+.data:0049506A                 db    0
+.data:0049506B                 db    0
+.data:0049506C                 db 0EEh ; î
+.data:0049506D                 db    0
+.data:0049506E                 db    0
+.data:0049506F                 db    0
+.data:00495070                 db    0
+.data:00495071                 db 0CCh ; Ì
+.data:00495072                 db 0CCh ; Ì
+.data:00495073                 db 0CCh ; Ì
+.data:00495074                 db    4
+.data:00495075                 db    0
+.data:00495076                 db    0
+.data:00495077                 db    0
+.data:00495078                 db 0E4h ; ä
+.data:00495079                 db    0
+.data:0049507A                 db    0
+.data:0049507B                 db    0
+.data:0049507C                 db 0C6h ; Æ
+.data:0049507D                 db  27h ; '
+.data:0049507E                 db 0AFh ; ¯
+.data:0049507F                 db  0Ch
+.data:00495080                 db    3
+.data:00495081                 db    0
+.data:00495082                 db    0
+.data:00495083                 db    0
+.data:00495084                 db  1Ah
+.data:00495085                 db    0
+.data:00495086                 db    0
+.data:00495087                 db    0
+.data:00495088                 db  5Ah ; Z
+.data:00495089                 db  31h ; 1
+.data:0049508A                 db  39h ; 9
+.data:0049508B                 db  55h ; U
+.data:0049508C                 db    1
+.data:0049508D                 db    0
+.data:0049508E                 db    0
+.data:0049508F                 db    0
+.data:00495090                 db  2Eh ; .
+.data:00495091                 db    0
+.data:00495092                 db    0
+.data:00495093                 db    0
+.data:00495094                 db  35h ; 5
+.data:00495095                 db 0CCh ; Ì
+.data:00495096                 db 0CCh ; Ì
+.data:00495097                 db 0CCh ; Ì
+.data:00495098                 db    4
+.data:00495099                 db    0
+.data:0049509A                 db    0
+.data:0049509B                 db    0
+.data:0049509C                 db 0E0h ; à
+.data:0049509D                 db    0
+.data:0049509E                 db    0
+.data:0049509F                 db    0
+.data:004950A0                 db 0CCh ; Ì
+.data:004950A1                 db  73h ; s
+.data:004950A2                 db 0BEh ; ¾
+.data:004950A3                 db  0Ch
+.data:004950A4                 db    1
+.data:004950A5                 db    0
+.data:004950A6                 db    0
+.data:004950A7                 db    0
+.data:004950A8                 db 0DBh ; Û
+.data:004950A9                 db    0
+.data:004950AA                 db    0
+.data:004950AB                 db    0
+.data:004950AC                 db  35h ; 5
+.data:004950AD                 db 0CCh ; Ì
+.data:004950AE                 db 0CCh ; Ì
+.data:004950AF                 db 0CCh ; Ì
+.data:004950B0                 db    2
+.data:004950B1                 db    0
+.data:004950B2                 db    0
+.data:004950B3                 db    0
+.data:004950B4                 db 0F2h ; ò
+.data:004950B5                 db    0
+.data:004950B6                 db    0
+.data:004950B7                 db    0
+.data:004950B8                 db  8Ch ; Œ
+.data:004950B9                 db 0A4h ; ¤
+.data:004950BA                 db 0CCh ; Ì
+.data:004950BB                 db 0CCh ; Ì
+.data:004950BC                 db    4
+.data:004950BD                 db    0
+.data:004950BE                 db    0
+.data:004950BF                 db    0
+.data:004950C0                 db 0F4h ; ô
+.data:004950C1                 db    0
+.data:004950C2                 db    0
+.data:004950C3                 db    0
+.data:004950C4                 db  88h ; ˆ
+.data:004950C5                 db  32h ; 2
+.data:004950C6                 db 0B3h ; ³
+.data:004950C7                 db    7
+.data:004950C8                 db    2
+.data:004950C9                 db    0
+.data:004950CA                 db    0
+.data:004950CB                 db    0
+.data:004950CC                 db  25h ; %
+.data:004950CD                 db    0
+.data:004950CE                 db    0
+.data:004950CF                 db    0
+.data:004950D0                 db 0A7h ; §
+.data:004950D1                 db  39h ; 9
+.data:004950D2                 db 0CCh ; Ì
+.data:004950D3                 db 0CCh ; Ì
+.data:004950D4                 db    4
+.data:004950D5                 db    0
+.data:004950D6                 db    0
+.data:004950D7                 db    0
+.data:004950D8                 db  40h ; @
+.data:004950D9                 db    0
+.data:004950DA                 db    0
+.data:004950DB                 db    0
+.data:004950DC                 db  88h ; ˆ
+.data:004950DD                 db  37h ; 7
+.data:004950DE                 db 0B4h ; ´
+.data:004950DF                 db    5
+.data:004950E0                 db    1
+.data:004950E1                 db    0
+.data:004950E2                 db    0
+.data:004950E3                 db    0
+.data:004950E4                 db 0FFh ; ÿ
+.data:004950E5                 db    0
+.data:004950E6                 db    0
+.data:004950E7                 db    0
+.data:004950E8                 db  3Dh ; =
+.data:004950E9                 db 0CCh ; Ì
+.data:004950EA                 db 0CCh ; Ì
+.data:004950EB                 db 0CCh ; Ì
+.data:004950EC                 db    3
+.data:004950ED                 db    0
+.data:004950EE                 db    0
+.data:004950EF                 db    0
+.data:004950F0                 db    0
+.data:004950F1                 db    1
+.data:004950F2                 db    0
+.data:004950F3                 db    0
+.data:004950F4                 db  51h ; Q
+.data:004950F5                 db  32h ; 2
+.data:004950F6                 db  56h ; V
+.data:004950F7                 db  6Bh ; k
+.data:004950F8                 db    3
+.data:004950F9                 db    0
+.data:004950FA                 db    0
+.data:004950FB                 db    0
+.data:004950FC                 db    3
+.data:004950FD                 db    1
+.data:004950FE                 db    0
+.data:004950FF                 db    0
+.data:00495100                 db  64h ; d
+.data:00495101                 db  58h ; X
+.data:00495102                 db  4Ah ; J
+.data:00495103                 db  6Dh ; m
+.data:00495104                 db    4
+.data:00495105                 db    0
+.data:00495106                 db    0
+.data:00495107                 db    0
+.data:00495108                 db  27h ; '
+.data:00495109                 db    0
+.data:0049510A                 db    0
+.data:0049510B                 db    0
+.data:0049510C                 db 0C7h ; Ç
+.data:0049510D                 db  1Dh
+.data:0049510E                 db 0BAh ; º
+.data:0049510F                 db  3Ch ; <
+.data:00495110                 db    2
+.data:00495111                 db    0
+.data:00495112                 db    0
+.data:00495113                 db    0
+.data:00495114                 db    7
+.data:00495115                 db    1
+.data:00495116                 db    0
+.data:00495117                 db    0
+.data:00495118                 db  2Bh ; +
+.data:00495119                 db    6
+.data:0049511A                 db 0CCh ; Ì
+.data:0049511B                 db 0CCh ; Ì
+.data:0049511C                 db    4
+.data:0049511D                 db    0
+.data:0049511E                 db    0
+.data:0049511F                 db    0
+.data:00495120                 db 0A3h ; £
+.data:00495121                 db    0
+.data:00495122                 db    0
+.data:00495123                 db    0
+.data:00495124                 db 0C7h ; Ç
+.data:00495125                 db  26h ; &
+.data:00495126                 db 0FDh ; ý
+.data:00495127                 db    0
+.data:00495128                 db    1
+.data:00495129                 db    0
+.data:0049512A                 db    0
+.data:0049512B                 db    0
+.data:0049512C                 db 0A8h ; ¨
+.data:0049512D                 db    0
+.data:0049512E                 db    0
+.data:0049512F                 db    0
+.data:00495130                 db  4Eh ; N
+.data:00495131                 db 0CCh ; Ì
+.data:00495132                 db 0CCh ; Ì
+.data:00495133                 db 0CCh ; Ì
+.data:00495134                 db    1
+.data:00495135                 db    0
+.data:00495136                 db    0
+.data:00495137                 db    0
+.data:00495138                 db  0Eh
+.data:00495139                 db    1
+.data:0049513A                 db    0
+.data:0049513B                 db    0
+.data:0049513C                 db  3Dh ; =
+.data:0049513D                 db 0CCh ; Ì
+.data:0049513E                 db 0CCh ; Ì
+.data:0049513F                 db 0CCh ; Ì
+.data:00495140                 db    3
+.data:00495141                 db    0
+.data:00495142                 db    0
+.data:00495143                 db    0
+.data:00495144                 db 0F8h ; ø
+.data:00495145                 db    0
+.data:00495146                 db    0
+.data:00495147                 db    0
+.data:00495148                 db  49h ; I
+.data:00495149                 db  46h ; F
+.data:0049514A                 db  52h ; R
+.data:0049514B                 db  67h ; g
+.data:0049514C                 db    4
+.data:0049514D                 db    0
+.data:0049514E                 db    0
+.data:0049514F                 db    0
+.data:00495150                 db 0D6h ; Ö
+.data:00495151                 db    0
+.data:00495152                 db    0
+.data:00495153                 db    0
+.data:00495154                 db  88h ; ˆ
+.data:00495155                 db  30h ; 0
+.data:00495156                 db 0B5h ; µ
+.data:00495157                 db    2
+.data:00495158                 db    2
+.data:00495159                 db    0
+.data:0049515A                 db    0
+.data:0049515B                 db    0
+.data:0049515C                 db  16h
+.data:0049515D                 db    1
+.data:0049515E                 db    0
+.data:0049515F                 db    0
+.data:00495160                 db  25h ; %
+.data:00495161                 db  86h ; †
+.data:00495162                 db 0CCh ; Ì
+.data:00495163                 db 0CCh ; Ì
+.data:00495164                 db    4
+.data:00495165                 db    0
+.data:00495166                 db    0
+.data:00495167                 db    0
+.data:00495168                 db  18h
+.data:00495169                 db    1
+.data:0049516A                 db    0
+.data:0049516B                 db    0
+.data:0049516C                 db 0DCh ; Ü
+.data:0049516D                 db  20h
+.data:0049516E                 db 0FDh ; ý
+.data:0049516F                 db  0Ch
+.data:00495170                 db    2
+.data:00495171                 db    0
+.data:00495172                 db    0
+.data:00495173                 db    0
+.data:00495174                 db  51h ; Q
+.data:00495175                 db    0
+.data:00495176                 db    0
+.data:00495177                 db    0
+.data:00495178                 db 0A8h ; ¨
+.data:00495179                 db 0A2h ; ¢
+.data:0049517A                 db 0CCh ; Ì
+.data:0049517B                 db 0CCh ; Ì
+.data:0049517C                 db    3
+.data:0049517D                 db    0
+.data:0049517E                 db    0
+.data:0049517F                 db    0
+.data:00495180                 db  1Fh
+.data:00495181                 db    1
+.data:00495182                 db    0
+.data:00495183                 db    0
+.data:00495184                 db  63h ; c
+.data:00495185                 db  6Ch ; l
+.data:00495186                 db  56h ; V
+.data:00495187                 db  33h ; 3
+.data:00495188                 db    3
+.data:00495189                 db    0
+.data:0049518A                 db    0
+.data:0049518B                 db    0
+.data:0049518C                 db  22h ; "
+.data:0049518D                 db    1
+.data:0049518E                 db    0
+.data:0049518F                 db    0
+.data:00495190                 db  51h ; Q
+.data:00495191                 db  58h ; X
+.data:00495192                 db  4Ah ; J
+.data:00495193                 db  6Bh ; k
+.data:00495194                 db    1
+.data:00495195                 db    0
+.data:00495196                 db    0
+.data:00495197                 db    0
+.data:00495198                 db  25h ; %
+.data:00495199                 db    1
+.data:0049519A                 db    0
+.data:0049519B                 db    0
+.data:0049519C                 db  0Eh
+.data:0049519D                 db 0CCh ; Ì
+.data:0049519E                 db 0CCh ; Ì
+.data:0049519F                 db 0CCh ; Ì
+.data:004951A0                 dd 0
