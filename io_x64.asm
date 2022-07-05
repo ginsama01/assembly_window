@@ -3,7 +3,7 @@ NULL        equ 0
 STD_OUTPUT_HANDLE equ -11
 STD_INPUT_HANDLE equ -10
 
-extern GetStdHandle, WriteConsoleA
+extern GetStdHandle, WriteConsoleA, ReadConsoleA
 
 ; calculate strlen of string
 ; input: 
@@ -43,7 +43,7 @@ printStr:
     ; local variable
     %define len     rbp - 8
     %define lpChar  rbp - 16
-    mov rsi, rcx    
+    mov rsi, rcx    ; store string   
     sub rsp, 32
     call strlen
     add rsp, 32
@@ -56,7 +56,7 @@ printStr:
 
     sub rsp, 40 ; shadow space for 5 parameters
     mov rcx, rax ;rax is output of GetStdHandle, mov to rcx, it's first parameter of WriteConsoleA, a handle to the console screen buffer.
-    mov rdx, msg ; A pointer to a buffer that contains characters to be written to the console screen buffer
+    mov rdx, rsi ; A pointer to a buffer that contains characters to be written to the console screen buffer
     mov r8, [len] ; The number of characters to be written.
     lea r9, [lpChar] ; A pointer to a variable that receives the number of characters actually written.
     mov qword [rsp + 4 * 8], NULL ; lpReserved Reserved; must be NULL.
@@ -77,20 +77,35 @@ printStr:
 readStr:
     push rbp
     mov rbp, rsp
+    sub rsp, 16
+    ; local variable
+    %define len     rbp - 8
+    %define lpChar  rbp - 16
+    mov qword [len], rdx
 
-    mov rdx, rsi    ; arg2
-    mov rsi, rdi    ; arg1
-    mov rax, SYS_READ  ; syscall number
-	mov rdi, STDIN  ; arg0
-    syscall
+    sub rsp, 32 ; for shadow space
+    mov rsi, rcx
+    mov rcx, STD_INPUT_HANDLE ; The standard device
+    call GetStdHandle
+    add rsp, 32 ; for shadow space
 
+    sub rsp, 40
+    mov rcx, rax    ; A handle to the console input buffer.
+    mov rdx, rsi    ; A pointer to a buffer that receives the data read from the console input buffer
+    mov r8, [len]   ; The number of characters to be read.
+    lea r9, [lpChar]; A pointer to a variable that receives the number of characters actually read.
+    mov qword [rsp + 4 * 8], NULL ; A pointer to a CONSOLE_READCONSOLE_CONTROL 
+    call ReadConsoleA
+    add rsp, 40
+
+    add rsp, 16
     mov rsp, rbp
     pop rbp
     ret
 
 ; Convert string to decimal number
 ; Input: 
-;   %rdi: char* - string to convert
+;   %rcx: char* - string to convert
 ; Output: 
 ;   %rax: int - decimal number
 string_to_decimal:
@@ -98,6 +113,7 @@ string_to_decimal:
         push rbp
         mov rbp, rsp
 
+        mov rdi, rcx
         xor rax, rax    ; rax = 0
         xor rcx, rcx    ; rcx = 0
         xor rdx, rdx    ; rdx = 0
@@ -106,9 +122,9 @@ string_to_decimal:
         mov cl, [rdi]   ; Get digit character
         cmp cl, 0x0     ; Check if null character
         je std_done
-        cmp cl, 0xA     ; Check if enter character
+        cmp cl, 0xD     ; Check if enter character
         je std_done
-        sub cl, 0x30
+        sub cl, 0x30    ; Convert character to digit in decimal
 
         ; rax = rax * 10 + rcx
         push rcx    ; push rcx value to stack
@@ -117,7 +133,7 @@ string_to_decimal:
         pop rcx     ; get value from stack
         add rax, rcx
 
-        inc rdi     ; next pointer
+        inc rdi
         jmp std_continue
 
     std_done:
@@ -127,14 +143,16 @@ string_to_decimal:
 
 ; Convert decimal number to string
 ; Input: 
-;   %rdi: int - decimal number 
-;   %rsi: char* - string will store value
+;   %rcx: int - decimal number 
+;   %rdx: char* - string will store value
 ; Output: none
 decimal_to_string:
     dts_init:
         push rbp
         mov rbp, rsp
-        mov rax, rdi    ; decimal number
+   
+        mov rsi, rdx    ; string will store value
+        mov rax, rcx    ; decimal number
         xor rcx, rcx    ; rcx = 0
     
     dts_continue:

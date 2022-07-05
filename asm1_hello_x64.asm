@@ -1,5 +1,5 @@
 ; Assemble: nasm -f win64 asm1_hello_x64.asm -o asm1_hello_x64.obj
-; Link: GoLink.exe /console asm1_hello.obj kernel32.dll user32.dll
+; Link: GoLink.exe /console asm1_hello_x64.obj kernel32.dll user32.dll
 ; Execute: asm1_hello_x64.exe
 
 NULL        equ 0
@@ -25,7 +25,7 @@ Start:	   ;tells linker entry point
     call WriteConsoleA ; Writes a character string to a console screen buffer beginning at the current cursor location.
     add rsp, 40
 
-    push NULL
+    xor rcx, rcx
     call ExitProcess    ; call exit from win api
 
 section	.data       ;Data Segment
