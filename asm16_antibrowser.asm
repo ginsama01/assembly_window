@@ -61,8 +61,6 @@ section .text
     global Start
 
 Start:
-    sub rsp, 8
-
     sub rsp, 32
     xor rcx, rcx 
     call GetModuleHandleA
@@ -106,7 +104,7 @@ WinMain:
 
     %define hWnd               RBP - 8              ; 8 bytes
 
-    sub rsp, 144
+    sub rsp, 136
 
     mov dword [wc.cbSize], 80
     mov dword [wc.style], CS_HREDRAW | CS_VREDRAW 
@@ -193,6 +191,7 @@ MessageLoop:
     jmp MessageLoop
 
 MessageDone:
+    add rsp, 136
     mov rsp, rbp
     pop rbp
     xor eax, eax

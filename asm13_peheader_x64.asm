@@ -1,5 +1,5 @@
-; nasm -f win64 asm13_peheader.asm -o asm13_peheader.obj
-; GoLink.exe /console asm13_peheader.obj kernel32.dll user32.dll
+; nasm -f win64 asm13_peheader_x64.asm -o asm13_peheader_x64.obj
+; GoLink.exe /console asm13_peheader_x64.obj kernel32.dll user32.dll
 
 ; Structures' definitions
 struc IMAGE_DOS_HEADER
