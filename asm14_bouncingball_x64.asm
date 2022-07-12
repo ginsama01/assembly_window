@@ -86,20 +86,20 @@ section .bss
     hwndShow        resq 1
     hDC             resq 1
     brush           resq 1
-    stepX           resq 1
-    stepY           resq 1
-    curX            resq 1
-    curY            resq 1
-    oldX            resq 1
-    oldY            resq 1
-    temp            resq 4
-    rect            resq 4
+    stepX           resd 1
+    stepY           resd 1
+    curX            resd 1
+    curY            resd 1
+    oldX            resd 1
+    oldY            resd 1
+    temp            resd 4
+    rect            resd 4
 
 struc RECT
-    .left           resq 1
-    .top            resq 1
-    .right          resq 1
-    .bottom         resq 1
+    .left           resd 1
+    .top            resd 1
+    .right          resd 1
+    .bottom         resd 1
 
 section .text 
     global Start 
@@ -340,14 +340,14 @@ WmTimer:
 
     ; cover old ellipse
     mov qword [brush], rax
-    mov rax, qword [oldX]
-    mov qword [temp + RECT.left], rax
-    mov rbx, qword [oldY] 
-    mov qword [temp + RECT.top], rbx
-    add rax, BallSize
-    mov qword [temp + RECT.right], rax
-    add rbx, BallSize
-    mov qword [temp + RECT.bottom], rbx
+    mov eax, dword [oldX]
+    mov dword [temp + RECT.left], eax
+    mov ebx, dword [oldY] 
+    mov dword [temp + RECT.top], ebx
+    add eax, BallSize
+    mov dword [temp + RECT.right], eax
+    add ebx, BallSize
+    mov dword [temp + RECT.bottom], ebx
 
     sub rsp, 32
     mov rcx, qword [hDC]
@@ -377,30 +377,32 @@ WmTimer:
     add rsp, 32
 
     ; draw new ellipse
-    mov rax, qword [curX]
-    add rax, BallSize
-    mov rbx, qword [curY]
-    add rbx, BallSize
+    mov eax, dword [curX]
+    add eax, BallSize
+    mov ebx, dword [curY]
+    add ebx, BallSize
 
 
     sub rsp, 40
     mov rcx, qword [hDC]
-    mov rdx, qword [curX]
-    mov r8, qword [curY]
+    xor rdx, rdx
+    xor r8, r8
+    mov edx, dword [curX]
+    mov r8d, dword [curY]
     mov r9, rax
-    mov qword [rsp + 4*8], rbx
+    mov dword [rsp + 4*8], ebx
     call Ellipse    ; draw ellipse
     add rsp, 40
 
     ; update values
-    mov rax, qword [curX]
-    mov qword [oldX], rax
-    mov rbx, qword [curY]
-    mov qword [oldY], rbx
-    add rax, qword [stepX]
-    mov qword [curX], rax
-    add rbx, qword [stepY]
-    mov qword [curY], rbx
+    mov eax, dword [curX]
+    mov dword [oldX], eax
+    mov ebx, dword [curY]
+    mov dword [oldY], ebx
+    add eax, dword [stepX]
+    mov dword [curX], eax
+    add ebx, dword [stepY]
+    mov dword [curY], ebx
 
     ; get window size
     sub rsp, 32
@@ -410,35 +412,35 @@ WmTimer:
     add rsp, 32
 
     compareChangeX:
-        mov rax, qword [curX]
-        mov rbx, rax
-        add rbx, BallSize
-        cmp rbx, qword [rect + RECT.right]
+        mov eax, dword [curX]
+        mov ebx, eax
+        add ebx, BallSize
+        cmp ebx, dword [rect + RECT.right]
         jae changeDirectX
-        cmp rax, 0
+        cmp eax, 0
         jbe changeDirectX
         jmp compareChangeY
     changeDirectX:
-        mov rcx, qword [stepX]
-        xor rdx, rdx 
-        sub rdx, rcx 
-        mov qword [stepX], rdx 
+        mov ecx, dword [stepX]
+        xor edx, edx 
+        sub edx, ecx 
+        mov dword [stepX], edx 
 
     compareChangeY:
-        mov rax, [curY]
-        mov rbx, rax
-        add rbx, BallSize
-        cmp rbx, qword [rect + RECT.bottom]
+        mov eax, [curY]
+        mov ebx, eax
+        add ebx, BallSize
+        cmp ebx, dword [rect + RECT.bottom]
         jae changeDirectY
-        cmp rax, 0
+        cmp eax, 0
         jbe changeDirectY
         jmp WmTimerContinue
 
     changeDirectY:
-        mov rcx, [stepY]
-        xor rdx, rdx
-        sub rdx, rcx 
-        mov qword [stepY], rdx 
+        mov ecx, [stepY]
+        xor edx, edx
+        sub edx, ecx 
+        mov dword [stepY], edx 
     
     WmTimerContinue: 
         sub rsp, 32

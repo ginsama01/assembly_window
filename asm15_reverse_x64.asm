@@ -1,7 +1,6 @@
 ; nasm -f win64 asm15_reverse_x64.asm -o asm15_reverse_x64.obj
 ; GoLink.exe /console asm15_reverse_x64.obj kernel32.dll user32.dll
 ; .\asm15_reverse_x64.exe
-%include 'io_x64.asm'
 STD_OUTPUT_HANDLE   EQU -11
 COLOR_WINDOW        EQU 5                       ; Constants
 CS_BYTEALIGNWINDOW  EQU 2000h
@@ -81,8 +80,6 @@ Start:
     add rsp, 32
     mov qword [hInstance], rax
 
-    call GetCommandLineA    ; Retrieves the command-line string for the current process.
-    mov qword [CommandLine], rax
 
     call WinMain
 
@@ -125,7 +122,7 @@ WinMain:
     %define hWnd               RBP - 8              ; 8 bytes
 
     mov dword [wc.cbSize], 80
-    mov dword [wc.style], CS_HREDRAW | CS_VREDRAW   
+    mov dword [wc.style], CS_HREDRAW | CS_VREDRAW 
     mov qword [wc.lpfnWndProc], WndProc
     mov dword [wc.cbClsExtra], NULL
     mov dword [wc.cbWndExtra], NULL
@@ -138,7 +135,7 @@ WinMain:
     sub rsp, 32
     mov rcx, NULL
     mov rdx, IDI_APPLICATION
-    call LoadIconA  ; load icon
+    call LoadIconA
     add rsp, 32
     mov qword [wc.hIcon], rax
     mov qword [wc.hIconSm], rax
@@ -146,7 +143,7 @@ WinMain:
     sub rsp, 32
     mov rcx, NULL
     mov rdx, IDC_ARROW
-    call LoadCursorA    ; load cursor
+    call LoadCursorA
     add rsp, 32
     mov qword [wc.hCursor], rax
     
@@ -154,7 +151,7 @@ WinMain:
     sub rsp, 32
     lea rcx, [wc]
     call RegisterClassExA  
-    add rsp, 32 
+    add rsp, 32
 
     sub rsp, 96
     mov rcx, WS_EX_CLIENTEDGE
@@ -170,7 +167,7 @@ WinMain:
     mov rax, qword [hInstance]
     mov qword [rsp + 10*8], rax
     mov qword [rsp + 11*8], NULL
-    call CreateWindowExA    ; create window
+    call CreateWindowExA
     add rsp, 96
     mov qword [hWnd], rax
 
@@ -255,12 +252,7 @@ DefaultMessage:
     pop rbp
     ret 
 
-WmCreate:
-    sub rsp, 32
-    mov rcx, ClassName
-    call printStr
-    add rsp, 32
-    
+WmCreate:    
     sub rsp, 96
     mov rcx, WS_EX_CLIENTEDGE
     mov rdx, EditClassName
@@ -317,11 +309,13 @@ WmCommand:
     call GetWindowTextA
     add rsp, 32
 
+    add rsp, 32
     sub rsp, 32
     mov rcx, buffer
     mov rdx, revstr
-    call reverse_string
+    call RevStr
     add rsp, 32
+
 
     sub rsp, 32
     mov rcx, qword [hwndShow]
@@ -340,46 +334,47 @@ WmEnd:
     xor rax, rax
     mov rsp, rbp
     pop rbp 
-    ret 16
+    ret 
 
 ; Reverse string
 ; Input:
 ;   %rcx: char* - string to reverse
 ;   %rdx: char* - store string after reverse
 ; Output: none
-reverse_string:
-    reverse_init:
-        push rbp
-        mov rbp, rsp
+RevStr:
+    push rbp
+    mov rbp, rsp
 
-        ; change calling convention
-        mov rdi, rcx
-        mov rsi, rdx
+    mov rbx, rdx
+    mov rdx, rcx
+    xor rax, rax
+    xor rcx, rcx
 
-        xor rax, rax
-        xor rcx, rcx    ; for count characters
-    
     next_char:
-        mov al, [rdi]   ; get character
-        ; if character is null or enter
-        cmp al, 0x0     
-        je reverse
+        mov al, [rdx]
+        cmp al, 0x0
+        je before_reverse
         cmp al, 0xA
-        je reverse
-        push rax    ; push character to stack
-        inc rdi     ; next character
-        inc rcx     ; inc count
+        je before_reverse
+        push rax
+        inc rdx
+        inc rcx
         jmp next_char
     
+    before_reverse:
+        mov qword [rbx], 0
+        cmp rcx, 0
+        je reverse_done
+
     reverse:
-        pop rax     ;get charcater from stack
-        mov [rsi], rax  ; mov to end string
-        inc rsi     ; next position in end string
+        pop rax
+        mov [rbx], rax
+        inc rbx
         loop reverse
     
     reverse_done:
         mov rsp, rbp
-        pop rbp
+	    pop rbp
         ret
     
 

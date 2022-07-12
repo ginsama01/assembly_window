@@ -1,4 +1,3 @@
-
 NULL                EQU 0
 STD_OUTPUT_HANDLE   EQU -11
 COLOR_WINDOW        EQU 5  
@@ -61,6 +60,8 @@ section .text
     global Start
 
 Start:
+    sub rsp, 8
+
     sub rsp, 32
     xor rcx, rcx 
     call GetModuleHandleA
@@ -76,6 +77,7 @@ Exit:
 WinMain: 
     push rbp
     mov rbp, rsp
+
     %define wc                 RBP - 136            ; WNDCLASSEX structure, 80 bytes
     %define wc.cbSize          RBP - 136            ; 4 bytes. Start on an 8 byte boundary
     %define wc.style           RBP - 132            ; 4 bytes
@@ -103,7 +105,7 @@ WinMain:
 
     %define hWnd               RBP - 8              ; 8 bytes
 
-    sub rsp, 136
+    sub rsp, 144
 
     mov dword [wc.cbSize], 80
     mov dword [wc.style], CS_HREDRAW | CS_VREDRAW 
@@ -190,7 +192,6 @@ MessageLoop:
     jmp MessageLoop
 
 MessageDone:
-    add rsp, 136
     mov rsp, rbp
     pop rbp
     xor eax, eax
