@@ -140,39 +140,5 @@ for i in hex1.split(", "):
         if fnc == 4:
             function4(j, num)
         count = 0
-    
-# for i in s:
-#     if i == 32:
-#         i = 0
-#     if count == 0:
-#         fnc = i 
-#     if count == 4:
-#         j = i 
-#     if count == 5:
-#         j = (i << 8) + j
-#     if count == 8:
-#         num = i
-#     if count == 9 and fnc >= 2:
-#         num = (i << 8) + num  
-#     if count == 10 and fnc >= 3:
-#         num = (i << 16) + num
-#     if count == 11 and fnc >= 3:
-#         num = (i << 24) + num
-#     count = count + 1
-#     if count == 12:
-        # if fnc == 1:
-        #     function1(j, num)
-        #     c1+=1
-        # if fnc == 2:
-        #     function2(j, num)
-        #     c2+=1
-        # if fnc == 3:
-        #     function3(j, num)
-        #     c3+=1
-        # if fnc == 4:
-        #     function4(j, num)
-        #     c4+=1
-        #     break
-        # count = 0
 
 print(''.join(key))

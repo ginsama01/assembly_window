@@ -40,19 +40,19 @@ ShowID              EQU 2
 
 
 
-%define wc                  EBP - 80             ; WNDCLASSEX structure. 48 bytes
-%define wc.cbSize           EBP - 80
-%define wc.style            EBP - 76
-%define wc.lpfnWndProc      EBP - 72
-%define wc.cbClsExtra       EBP - 68
-%define wc.cbWndExtra       EBP - 64
-%define wc.hInstance        EBP - 60
-%define wc.hIcon            EBP - 56
-%define wc.hCursor          EBP - 52
-%define wc.hbrBackground    EBP - 48
-%define wc.lpszMenuName     EBP - 44
-%define wc.lpszClassName    EBP - 40
-%define wc.hIconSm          EBP - 36
+%define wc                  EBP - 80            ; WNDCLASSEX structure. 48 bytes
+%define wc.cbSize           EBP - 80            ; The size, in bytes, of this structure.
+%define wc.style            EBP - 76            ; The class style(s)
+%define wc.lpfnWndProc      EBP - 72            ; A pointer to the window procedure
+%define wc.cbClsExtra       EBP - 68            ; The number of extra bytes to allocate following the window-class structure
+%define wc.cbWndExtra       EBP - 64            ; The number of extra bytes to allocate following the window instance.
+%define wc.hInstance        EBP - 60            ; A handle to the instance that contains the window procedure for the class.
+%define wc.hIcon            EBP - 56            ; A handle to the class icon. This member must be a handle to an icon resource.
+%define wc.hCursor          EBP - 52            ; A handle to the class cursor. 
+%define wc.hbrBackground    EBP - 48            ; A handle to the class background brush.
+%define wc.lpszMenuName     EBP - 44            ; Pointer to a null-terminated character string that specifies the resource name of the class menu, as the name appears in the resource file.
+%define wc.lpszClassName    EBP - 40            ; A pointer to a null-terminated string or is an atom. 
+%define wc.hIconSm          EBP - 36            ; A handle to a small icon that is associated with the window class.
 
 %define msg                 EBP - 32             ; MSG structure. 28 bytes
 %define msg.hwnd            EBP - 32             ; Breaking out each member is not necessary
@@ -128,12 +128,12 @@ section .text
     global Start 
 
 Start:
-    call InitValue
+    call InitValue  
     push NULL
-    call GetModuleHandleA
+    call GetModuleHandleA  ; Retrieves a module handle for the specified module. The module must have been loaded by the calling process
     mov dword [hInstance], eax
 
-    call GetCommandLineA
+    call GetCommandLineA    ; Retrieves the command-line string for the current process.
     mov dword [CommandLine], eax
 
     call WinMain
@@ -159,32 +159,32 @@ WinMain:
     sub esp, 80
 
     mov dword [wc.cbSize], 48
-    mov dword [wc.style], CS_HREDRAW | CS_VREDRAW
+    mov dword [wc.style], CS_HREDRAW | CS_VREDRAW   
     mov dword [wc.lpfnWndProc], WndProc
     mov dword [wc.cbClsExtra], NULL
     mov dword [wc.cbWndExtra], NULL
     mov eax, dword [hInstance]
     mov dword [wc.hInstance], eax
     push WHITE_BRUSH
-    call GetStockObject
+    call GetStockObject ; pen, brush, fonts, ...
     mov dword [wc.hbrBackground], eax
     mov dword [wc.lpszMenuName], NULL
     mov dword [wc.lpszClassName], ClassName
 
-    push IDI_APPLICATION
+    push IDI_APPLICATION    
     push NULL
-    call LoadIconA
+    call LoadIconA  ; load icon
     mov dword [wc.hIcon], eax
     mov dword [wc.hIconSm], eax
 
     push IDC_ARROW
     push NULL
-    call LoadCursorA
+    call LoadCursorA    ; load cursor
     mov dword [wc.hCursor], eax
 
     lea eax, [wc]
     push eax
-    call RegisterClassExA
+    call RegisterClassExA   ; register a window class for createwindow
 
     push NULL
     push dword [hInstance]
@@ -192,21 +192,21 @@ WinMain:
     push NULL
     push WindowHeight
     push WindowWidth
-    push CW_USEDEFAULT
+    push CW_USEDEFAULT  
     push CW_USEDEFAULT
     push WS_OVERLAPPEDWINDOW | WS_VISIBLE
     push AppName
     push ClassName
     push WS_EX_CLIENTEDGE
-    call CreateWindowExA
+    call CreateWindowExA    ; create window
     mov dword [hWnd], eax
 
     push SW_SHOWDEFAULT
     push dword [hWnd]
-    call ShowWindow
+    call ShowWindow ; Sets the specified window's show state.
 
     push dword [hWnd]
-    call UpdateWindow
+    call UpdateWindow ;The UpdateWindow function updates the client area of the specified window by sending a WM_PAINT message to the window if the window's update region is not empty.
 
 MessageLoop:
     lea eax, [msg]
@@ -214,17 +214,17 @@ MessageLoop:
     push NULL
     push NULL
     push eax
-    call GetMessageA
+    call GetMessageA    ; Retrieves a message from the calling thread's message queue.
     cmp eax, 0
-    je MessageDone
+    je MessageDone  
 
     lea eax, [msg]
     push eax
-    call TranslateMessage
+    call TranslateMessage   ; Translates virtual-key messages into character messages. 
 
     lea eax, [msg]
     push eax
-    call DispatchMessageA
+    call DispatchMessageA   ; Dispatches a message to a window procedure. It is typically used to dispatch a message retrieved by the GetMessage function.
 
     jmp MessageLoop
 
@@ -243,7 +243,7 @@ WndProc:
     ; Set up a stack frame
     push ebp
     mov ebp, esp
-
+    ; catch message
     cmp dword [uMsg], WM_DESTROY
     je WmDestroy
 
@@ -259,7 +259,7 @@ DefaultMessage:
     push dword [wParam]
     push dword [uMsg]
     push dword [hWnd]
-    call DefWindowProcA
+    call DefWindowProcA ; Calls the default window procedure to provide default processing for any window messages that an application does not process
 
     mov esp, ebp
     pop ebp
@@ -276,16 +276,16 @@ WmCreate:
 WmTimer:
     ; get dc for drawing
     push dword [hWnd]
-    call GetDC
+    call GetDC  ; The GetDC function retrieves a handle to a device context (DC) for the client area of a specified window or for the entire screen.
     mov dword [hDC], eax
 
     ; use pure white
     push WHITE_BRUSH
-    call GetStockObject
+    call GetStockObject ; The GetStockObject function retrieves a handle to one of the stock pens, brushes, fonts, or palettes.
 
     push eax
     push hDC
-    call SelectObject
+    call SelectObject   ; The SelectObject function selects an object into the specified device context (DC). The new object replaces the previous object of the same type.
 
     ; cover old ellipse
     mov dword [brush], eax
@@ -301,11 +301,11 @@ WmTimer:
     push dword [brush]
     push temp
     push dword [hDC]
-    call FillRect
+    call FillRect   ; draw rectangle
 
     ; use new color to draw new ellipse
     push DC_BRUSH
-    call GetStockObject
+    call GetStockObject 
 
     push eax
     push dword [hDC]
@@ -327,7 +327,7 @@ WmTimer:
     push dword [curY]
     push dword [curX]
     push dword [hDC]
-    call Ellipse
+    call Ellipse    ; draw ellipse
 
     ; update values
     mov eax, dword [curX]
